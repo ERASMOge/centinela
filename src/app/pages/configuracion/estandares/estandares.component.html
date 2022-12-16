@@ -1,0 +1,56 @@
+
+    <!-- Account page navigation-->
+  <div>
+    <br>
+    <div class="col-xl-8">
+      <!-- Account details card-->
+      <div class="card mb-4">
+          <div class="card-header">Configuración para notificación de tickets</div>
+          <div class="card-body">
+              <form>
+                  <!-- Form Row-->
+                  <div class="row gx-3 mb-3">
+                      <div class="col-md-6">
+                          <label class="small mb-1" for="inputEstandar">Horas para tickets olvidados</label>
+                          <div class="input-group">
+                            <input class="form-control input-group-addon" id="inputEstandar" type="number" min="1" max="23" [value]="estandar" #estandarInput>
+                            <mat-icon style="margin-left: 2px; margin-right: 10px; font-size: 30px;">alarm_on</mat-icon>
+                          </div>
+                      </div>
+                      
+                      <div class="col-md-6">
+                          <label class="small mb-1" for="inputPort">Tiempo en horas para solución de ticket</label>
+                          <div class="input-group">
+                            <input class="form-control input-group-addon" id="inputPort" type="number" min="1" max="23" [value]="tiempo" #tiempoInput>
+                            <mat-icon style="margin-left: 2px; margin-right: 10px; font-size: 30px;">hourglass_top</mat-icon>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row gx-3 mb-3">
+                    <div class="col-md-6">
+                        <label class="small mb-1" for="inputEstandar">Minutos para tickets cerrados</label>
+                        <div class="input-group">
+                          <input class="form-control input-group-addon" id="inputEstandar" type="number" min="1" max="60" [value]="minutoTikCerrado" #minutoInput>
+                          <mat-icon style="margin-left: 2px; margin-right: 10px; font-size: 30px;">av_timer</mat-icon>
+                        </div>
+                    </div>
+                </div>
+
+                  <div>
+                 
+                  <!-- Save changes button-->
+                  <button mat-raised-button class="guardar" (click)="guardarEstandares(estandarInput.value, tiempoInput.value, minutoInput.value)">Guardar cambios</button>
+              </div>
+                  <notifier-container></notifier-container>
+                  
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+

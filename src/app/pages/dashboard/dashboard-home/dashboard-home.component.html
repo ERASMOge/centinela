@@ -1,0 +1,328 @@
+<div class="container">
+   <h2>Dashboard General</h2>
+   <div class="row">
+      <div class="col-3">
+         <mat-card class="dash">
+            <div style="text-align: center; margin-bottom: 10px;">Dash</div>
+            <mat-divider></mat-divider>
+
+            <table>
+               <tbody>
+                  <tr>
+                     <td>
+                        <div class="titulodash">Clientes</div>
+                        <div>1,600</div>
+                     </td>
+                     <div class="spacer"></div>
+                     <td>
+                        <mat-icon class="assigment">assignment</mat-icon>
+                     </td>
+                  </tr>
+                  <mat-divider></mat-divider>
+                  <tr>
+                     <td>
+                        <div class="titulodash">Servicios activos</div>
+                        <div>2,500</div>
+                     </td>
+                     <div class="spacer"></div>
+                     <td>
+                        <mat-icon class="equalizer">equalizer</mat-icon>
+                     </td>
+                  </tr>
+                  <mat-divider></mat-divider>
+                  <tr>
+                     <td>
+                        <div class="titulodash">Servicios cancelados</div>
+                        <div>650</div>
+                     </td>
+                     <div class="spacer"></div>
+                     <td>
+                        <mat-icon class="multiline_chart">multiline_chart</mat-icon>
+                     </td>
+                  </tr>
+                  <mat-divider></mat-divider>
+                  <tr>
+                     <td>
+                        <div class="titulodash">Servicios pendientes</div>
+                        <div>250</div>
+                     </td>
+                     <div class="spacer"></div>
+                     <td>
+                        <mat-icon class="pending_actions">pending_actions</mat-icon>
+                     </td>
+                  </tr>
+               </tbody>
+
+            </table>
+
+         </mat-card>
+      </div>
+      <div id="newc" class="col-2">
+         <mat-card class="clientesnuevos">
+
+            <div style="text-align: center; margin-bottom: 10px;">Clientes nuevos</div>
+            <mat-divider></mat-divider>
+            <br>
+            
+               <div id="arribanew" class="row" style="text-align: center;">
+                  <div  class="col-2">
+                     <div mat-card-avatar style=" background-color: rgb(236, 36, 150);  margin: 0 auto;">
+                        <div style=" line-height: 300%;">CE</div>
+                     </div>
+                     <h2 class="name" >COMERCIAL DE CARNES</h2>
+                     <h4 class="time" >hace 32 minutos</h4>                     
+                  </div>
+
+                  <div class="col-2">
+                     <div mat-card-avatar style=" background-color: rgb(96, 36, 236);  margin: 0 auto;">
+                        <div style=" line-height: 300%;">CE</div>
+                     </div>
+                     <h2 class="name" >COMERCIAL DE CARNES</h2>
+                     <h4 class="time" >hace 32 minutos</h4>
+                                    </div>
+
+                  <div class="col-2">
+                     <div mat-card-avatar style=" background-color: rgb(236, 36, 36);  margin: 0 auto;">
+                        <div style=" line-height: 300%;">CE</div>
+                     </div>
+                     <h2 class="name" >COMERCIAL DE CARNES</h2>
+                     <h4 class="time" >hace 32 minutos</h4>
+                                    </div>
+
+                  <div class="col-2">
+                     <div mat-card-avatar style=" background-color: rgb(36, 236, 86);  margin: 0 auto;">
+                        <div style=" line-height: 300%;">CE</div>
+                     </div>
+                     <h2 class="name" >COMERCIAL DE CARNES</h2>
+                     <h4 class="time" >hace 32 minutos</h4>
+                                    </div>
+
+               </div>
+               <div id="abajonew" class="row" style="text-align: center;">
+                  <div class="col-2">
+                     <div mat-card-avatar style=" background-color: rgb(236, 196, 36);  margin: 0 auto;">
+                        <div style=" line-height: 300%;">CE</div>
+                     </div>
+                     <h2 class="name" >COMERCIAL DE CARNES</h2>
+                     <h4 class="time" >hace 32 minutos</h4>
+                                    </div>
+                  <div class="col-2">
+                     <div mat-card-avatar style=" background-color: rgb(36, 209, 236);  margin: 0 auto;">
+                        <div style=" line-height: 300%;">CE</div>
+                     </div>
+                     <h2 class="name" >COMERCIAL DE CARNES</h2>
+                     <h4 class="time" >hace 32 minutos</h4>
+                                    </div>
+                  <div class="col-2">
+                     <div mat-card-avatar style=" background-color: rgb(236, 86, 36);  margin: 0 auto;">
+                        <div style=" line-height: 300%;">CE</div>
+                     </div>
+                     <h2 class="name" >COMERCIAL DE CARNES</h2>
+                     <h4 class="time" >hace 32 minutos</h4>                     
+                  </div>
+                  <div class="col-2">
+                     <div mat-card-avatar style=" background-color: rgb(176, 236, 36);  margin: 0 auto;">
+                        <div style=" line-height: 300%;">CE</div>
+                     </div>
+                     <h2 class="name" >COMERCIAL DE CARNES</h2>
+                     <h4 class="time" >hace 32 minutos</h4>
+                  </div>
+               </div>
+
+         
+
+         </mat-card>
+      </div>
+
+   </div>
+   
+
+
+                                         <!-- AQUI ESTA LA PARTE DE ENMEDIO -->
+
+
+   <br>
+<div  id="between" class="row">
+   <div class="col-sm">
+      <mat-card class="ServiceRepeater">
+         <div style="text-align: center; margin-bottom: 10px;">Servicios por repetidora</div>
+         <mat-divider></mat-divider>
+
+         <table>
+            <tbody>
+               
+               <tr>
+                  <td>
+                     <div> 
+                        <div id="chart">
+                           
+                           <apx-chart
+                         
+                             [series]="chartOptions.series"
+                             [chart]="chartOptions.chart"
+                             [labels]="chartOptions.labels"
+                             [responsive]="chartOptions.responsive"
+                           ></apx-chart>
+                         </div>
+                       </div>
+                  </td>
+               </tr>
+
+            </tbody>
+
+         </table>
+
+      </mat-card>
+   </div>
+   <div  class="col-sm">
+      <mat-card class="top+servicios">
+
+         <div style="text-align: center; margin-bottom: 10px;">Top 10 clientes con servicios</div>
+         <mat-divider></mat-divider>
+     
+         <div class="container">
+            <div class="row">
+              <div class="col-sm">
+               <div class="serviciostotales" >
+                 </div>
+               
+            </div>
+              <div class="col-sm">
+               <br>
+               <mat-card>
+               <table>
+
+                  <tbody>
+                    <tr>
+                    <td><div class="avatartopclientes" mat-card-avatar style=" background-color: rgb(36, 176, 236);  margin: 0 auto;"></div></td>
+                    <td class="empresanombre"> ECO</td>
+                  <td class="serviciocantidad">40</td>
+                  </tr> 
+                  <mat-divider></mat-divider>
+                  <tr>
+                     <td><div class="avatartopclientes" mat-card-avatar style=" background-color: rgb(36, 176, 236);  margin: 0 auto;"></div></td>
+                     <td class="empresanombre"> Super chivas</td>
+                   <td class="serviciocantidad">32</td>
+                   </tr> 
+                   <mat-divider></mat-divider>
+                   <tr>
+                     <td><div class="avatartopclientes" mat-card-avatar style=" background-color: rgb(36, 176, 236);  margin: 0 auto;"></div></td>
+                     <td class="empresanombre"> OXXO</td>
+                   <td class="serviciocantidad">30</td>
+                   </tr> 
+                   <mat-divider></mat-divider>
+                   <tr>
+                     <td><div class="avatartopclientes" mat-card-avatar style=" background-color: rgb(36, 176, 236);  margin: 0 auto;"></div></td>
+                     <td class="empresanombre"> SEGOB</td>
+                   <td class="serviciocantidad">23</td>
+                   </tr> 
+                   <mat-divider></mat-divider>
+                   <tr>
+                     <td><div class="avatartopclientes" mat-card-avatar style=" background-color: rgb(36, 176, 236);  margin: 0 auto;"></div></td>
+                     <td class="empresanombre"> SAT</td>
+                   <td class="serviciocantidad">20</td>
+                   </tr> 
+                   <mat-divider></mat-divider>
+                   <tr>
+                     <td><div class="avatartopclientes" mat-card-avatar style=" background-color: rgb(36, 176, 236);  margin: 0 auto;"></div></td>
+                     <td class="empresanombre"> Rancho mi algeria</td>
+                   <td class="serviciocantidad">10</td>
+                   </tr> 
+                   <mat-divider></mat-divider>
+                   <tr>
+                     <td><div class="avatartopclientes" mat-card-avatar style=" background-color: rgb(36, 176, 236);  margin: 0 auto;"></div></td>
+                     <td class="empresanombre"> UABC</td>
+                   <td class="serviciocantidad">8</td>
+                   </tr> 
+                   <mat-divider></mat-divider>
+                   <tr>
+                     <td><div class="avatartopclientes" mat-card-avatar style=" background-color: rgb(36, 176, 236);  margin: 0 auto;"></div></td>
+                     <td class="empresanombre"> Instituto Tecnologico</td>
+                   <td class="serviciocantidad">7</td>
+                   </tr> 
+                   <mat-divider></mat-divider>
+                   <tr>
+                     <td><div class="avatartopclientes" mat-card-avatar style=" background-color: rgb(36, 176, 236);  margin: 0 auto;"></div></td>
+                     <td class="empresanombre"> Ley</td>
+                   <td class="serviciocantidad">5</td>
+                   </tr> 
+                   <mat-divider></mat-divider>
+                   <tr>
+                     <td><div class="avatartopclientes" mat-card-avatar style=" background-color: rgb(36, 176, 236);  margin: 0 auto;"></div></td>
+                     <td class="empresanombre"> Red 7</td>
+                   <td class="serviciocantidad">2</td>
+                   </tr> 
+                   
+                  </tbody>
+               </table>
+            </mat-card>
+              </div>
+            
+            </div>
+          </div>
+      </mat-card>
+   </div>
+
+</div>
+
+
+                                         <!-- AQUI ESTA LA PARTE DE BAJA -->
+<br>
+<div class="row">
+
+<div class="col-sm">
+<mat-card>
+   <div id="chart">
+      <apx-chart
+        [series]="chartOptions2.series"
+        [chart]="chartOptions2.chart"
+        [xaxis]="chartOptions2.xaxis"
+        [dataLabels]="chartOptions2.dataLabels"
+        [yaxis]="chartOptions2.yaxis"
+        [colors]="chartOptions2.colors"
+        [legend]="chartOptions2.legend"
+        [fill]="chartOptions2.fill"
+      ></apx-chart>
+    </div>
+</mat-card>
+</div>
+
+<div class="col-sm">
+   <mat-card>
+      <div id="chart">
+         <apx-chart
+           [series]="chartOptions2.series"
+           [chart]="chartOptions2.chart"
+           [xaxis]="chartOptions2.xaxis"
+           [dataLabels]="chartOptions2.dataLabels"
+           [yaxis]="chartOptions2.yaxis"
+           [colors]="chartOptions2.colors"
+           [legend]="chartOptions2.legend"
+           [fill]="chartOptions2.fill"
+         ></apx-chart>
+       </div>
+   </mat-card>
+   </div>
+
+
+   <div class="col-sm">
+      <mat-card>
+         <div id="chart">
+            
+            <apx-chart
+              [series]="chartOptions2.series"
+              [chart]="chartOptions2.chart"
+              [xaxis]="chartOptions2.xaxis"
+              [dataLabels]="chartOptions2.dataLabels"
+              [yaxis]="chartOptions2.yaxis"
+              [colors]="chartOptions2.colors"
+              [legend]="chartOptions2.legend"
+              [fill]="chartOptions2.fill"
+            ></apx-chart>
+          </div>
+      </mat-card>
+      </div>
+
+</div>
+<br>
+</div>

@@ -1,0 +1,3 @@
+<h2>Agente:  <b>{{this.data.nombre}} |</b> nombre: <b style="text-transform:capitalize;"> {{this.data.nombreCompleto}} </b></h2>
+<p>Tickets abiertos y cerrados en menos de <b>{{this.data.minuto}} minutos</b></p>
+<app-table-ticket-malo [selectedFake]="this.data.fecha1" [selectedFake2]="this.data.fecha2"  [minuto]="this.data.minuto" [idUsuario]="this.data.usuario" [dialogRef]="dialogRef" ></app-table-ticket-malo>

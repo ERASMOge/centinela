@@ -1,0 +1,142 @@
+<div *ngIf="load === true">
+<h2 mat-dialog-title> <ng-container *ngIf="data.opc === false; else elseTemplate">
+    Crear contacto
+  </ng-container>
+  <ng-template #elseTemplate>
+    Actualizar contacto
+  </ng-template></h2>
+  <form [formGroup]="agregarForm">
+  <mat-dialog-content class="mat-typography">
+    <mat-tab-group (selectedIndexChange)="seleccionado($event)"  animationDuration="0ms">
+      <mat-tab [label]="labelAgregar">
+      <ng-template matTabContent>
+        <div class="container row">              
+         
+        <div class="col">
+            <h2>ID:&nbsp;{{this.data.idContacto !== undefined ? this.data.idContacto : idAuto}}</h2> 
+            <mat-form-field appearance="outline">
+              <mat-label>Nombre</mat-label>
+              <input matInput  placeholder="Ingrese nombre"  formControlName="nombre">   
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Apellido Paterno</mat-label>
+              <input matInput placeholder="Ingrese apellido paterno"  formControlName="paterno">   
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+            <mat-label>Apellido Materno</mat-label>
+            <input matInput  placeholder="Ingrese apellido materno"  formControlName="materno">   
+          </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Estatus</mat-label>
+          <mat-select  matNativeControl required  formControlName="estatus">
+            <mat-option value="0" disabled>Seleccione un estatus</mat-option>
+            <mat-option value="1">activo</mat-option>
+            <mat-option value="2">inactivo</mat-option>
+            <mat-option value="3">ausente</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Rol</mat-label>
+          <mat-select id="selectRol" matNativeControl  required formControlName="cveRol">
+            <mat-option value="0" disabled>Seleccione un Rol</mat-option>
+            <mat-option *ngFor="let dato of data.arrayRol" [value]="dato.idRol.toString()"> {{dato.nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Telefono</mat-label>
+            <input matInput  placeholder="Ingrese numero de telefono"  type="number" formControlName="telefono">   
+          </mat-form-field>
+      </div>
+        <div class="col">
+          <br><br>
+          <mat-form-field appearance="outline">
+            <mat-label>Celular</mat-label>
+            <input matInput   placeholder="Ingrese numero de celular"  type="number" formControlName="celular">   
+          </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Puesto</mat-label>
+              <input matInput  placeholder="Ingrese un puesto" formControlName="puesto">   
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+            <mat-label>Servicio</mat-label>
+            <mat-select id="selectServicio" formControlName="valueServicio" #servicio (selectionChange)="guardarServicio($event.value,1,'',$event)"  matNativeControl required>
+              <mat-option value="0" disabled>Asigne un servicio</mat-option>
+             <mat-option *ngFor="let d of data.arrayTabla===0?data.arrayServicios:Servicios" [value]="d.idServicio" [id]="d.idServicio+'z'"  (onSelectionChange)="elementOption($event.source)">{{d.servicio}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+          <div class="cajaBx">
+            <ng-template #placeholder2></ng-template>
+        </div>
+        <br>
+
+          <h2>Credenciales</h2>
+          <mat-form-field appearance="outline">
+            <mat-label>Correo</mat-label>
+            <input matInput   placeholder="Ingrese correo electronico" formControlName="correo">   
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Ingresa tu contraseña</mat-label>
+                        <input matInput class = "matInput" formControlName="contrasena" [type]="hide ? 'password' : 'text'" required>
+                        <mat-icon  matSuffix (click)="hide = !hide">
+                        {{hide ? 'visibility' : 'visibility_off'}}
+                        </mat-icon>
+          </mat-form-field>
+          </div>                
+          </div>
+
+      </ng-template>
+    </mat-tab>
+    <mat-tab [label]="labelAsignar" >
+      <form [formGroup]="asignarForm" >
+      <ng-template matTabContent >
+        <div class="container" style="text-align: center;">
+          <h2>Asignar servicios</h2> 
+        <mat-form-field appearance="fill">
+          <mat-label>Servicio</mat-label>
+          <mat-select id="selectServicio" (selectionChange)="todosContactos($event.value)"  [disabled]="selectService " formControlName="cveServicio">
+            <mat-option value="0" disabled selected>Asigne un servicio</mat-option>
+            <mat-option *ngFor="let dato of data.arrayServicios" [value]="dato.idServicio">
+              {{dato.servicio}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+        <h3>Contactos faltantes:</h3>
+        <div class="cajaBx2">
+          <ng-template #placeholder3></ng-template>
+        </div>
+      </div>
+      <!--
+        <mat-form-field appearance="fill">
+          <mat-label>Contactos</mat-label>
+          <mat-select id="selectContacto" [disabled]="selectContacto"  formControlName="cveContacto">
+            <mat-option value="0" disabled>Eliga un contacto</mat-option>
+            <mat-option *ngFor="let dato of data.arrayContactos" [value]="dato.idContacto"> {{dato.nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field>-->
+      </div>
+      </ng-template>
+    </form>
+    </mat-tab>
+    </mat-tab-group>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="center">
+      <button mat-button style="background-color:brown; color: white;" mat-dialog-close>Cancel</button>
+      <button mat-button style="background-color:#3f51b5; color: white;"  cdkFocusInitial (click)="enviar()" >
+        <ng-container *ngIf="data.opc === false; else elseTemplate">
+          Crear
+        </ng-container>
+        <ng-template #elseTemplate>
+          Actualizar
+        </ng-template>
+        </button>     
+    </mat-dialog-actions> 
+  </form>
+
+</div>
+  
+
+
+  

@@ -1,0 +1,27 @@
+/**Campos inputs*/
+mat-form-field {
+    width: 100%;
+}
+
+/**Elementos para el formulario*/
+.container{
+    padding-top: 10px;
+}
+.identificadores {
+    border: 0.5px solid #ccc;
+    height: 150px;
+    overflow: auto;
+}
+
+.mat-radio-group{
+    display: flex;
+    flex-direction: column;
+}
+
+.identificadores .mat-radio-button {
+   padding: 30px;
+}
+
+.buscar {
+    text-align: end;
+}

@@ -1,0 +1,102 @@
+/**Loading para componentes*/
+.preloader {
+    width: 60px;
+    height: 60px;
+    border: 10px solid #eee;
+    border-top: 10px solid #0c82ff ;
+    border-radius: 50%;
+    animation-name: girar;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    cursor:wait;
+  }
+  @keyframes girar {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /**Mensaje si hay clientes o no*/
+
+  .existe{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    text-align: center;
+   }
+
+
+table {
+    width: 100%;
+}
+
+#tablaCliente{
+    margin-top: 5%;
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+}
+
+.barriba {
+    display: flex;
+    justify-content: space-between;
+}
+.babajo {
+    margin-top: 20px;
+    margin-block: auto ;
+    display: inline-flex;
+}
+
+ .boton {
+    margin-right: 5px;
+    background-color: #3f51b5;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 500;
+    box-shadow:1px 1px 4px #b6b6b6;
+    cursor: pointer;
+}
+
+.import {
+    margin-block: auto;
+}
+
+
+#nuevoc {
+    margin-block: auto;
+}
+
+
+.menu{
+    width: auto;
+    border-radius: 100px;
+}
+
+
+
+@media screen and (max-width:624px) {
+    .barriba {
+        display: block;
+        text-align: center;
+    }
+    #nuevoc {
+        margin-top: 20px;
+        margin-bottom: 35px;
+    }
+
+    #nuevoc button{
+        width: 100%;
+        height: 40px;
+    }
+    .mat-form-field {
+        width: 100%;
+       
+    }
+   
+
+}

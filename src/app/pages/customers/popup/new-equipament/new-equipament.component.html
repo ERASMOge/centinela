@@ -1,0 +1,114 @@
+
+<!-- *ngFor="let item of data"-->
+<h2 mat-dialog-title >Equipo</h2>
+<form [formGroup]="routerForm" >
+<mat-dialog-content>
+    <div class="container row">  
+    <div class="col">
+        <h2>ID:&nbsp; {{this.data.model.idDevice !== 0 ? this.data.model.idDevice : idAuto}}</h2> 
+        <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput type="text" formControlName="device">
+        </mat-form-field>
+          
+        <mat-form-field appearance="fill">
+        <mat-label>Estatus</mat-label>
+        <mat-select id="estatus" formControlName="idEstatus">
+            <mat-option selected disabled #estatus>Seleccione un estatus</mat-option>
+            <mat-option value="1" >Activo</mat-option>
+            <mat-option value="2">Inactivo</mat-option>
+            <mat-option value="3">Ausente</mat-option>
+        </mat-select>
+        </mat-form-field>
+        
+        <!--<mat-form-field appearance="fill">
+        <mat-label>Tipo</mat-label>
+        <mat-select id="tipo" formControlName="idTipo">
+            <mat-option selected disabled>Seleccione un tipo</mat-option>
+            <mat-option value="1">Publico</mat-option>
+            <mat-option value="2">Privado</mat-option>
+        </mat-select>
+        </mat-form-field>-->
+        
+        <mat-form-field appearance="fill">
+        <mat-label>Repetidora</mat-label>
+        <mat-select id="repetidora" #repetidora (selectionChange)="tabChangeRepetidora($event.value)" formControlName="idRepetidora">
+            <mat-option selected disabled>Seleccione una repetidora</mat-option>
+            <mat-option *ngFor="let repetidor of repetidoras" [value]="repetidor.idRepetidora">{{repetidor.nombreRepetidora}}</mat-option>
+        </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field class="textarea"  appearance="outline">
+            <mat-label>Ingrese un comentario</mat-label>
+            <textarea rows="8" matInput formControlName="comentario"></textarea>
+          </mat-form-field>
+    </div>
+    <div class="col">
+        <h2>Equipo</h2>
+        <mat-form-field appearance="outline">
+        <mat-label>Modelo</mat-label>
+        <input matInput type="text" formControlName="modelo">
+        </mat-form-field>
+        
+        <mat-form-field   appearance="fill" >
+            <mat-label>Segmento</mat-label>
+            <mat-select #segmento (selectionChange)="tabChangeSegmento()" [disabled]="segmentos.length ===0" formControlName="idSegmento" >
+                <mat-option  selected disabled value ="-1">Sel/eccione una segmento</mat-option>
+                <mat-option *ngFor="let segmento of segmentos" [value]="segmento.idSegmento"  >{{segmento.segmento}}-{{segmento.segmentoFinal}}</mat-option>
+            </mat-select>
+            </mat-form-field>
+        
+        <mat-form-field appearance="fill">
+        <mat-label>Ip</mat-label>
+        <mat-select #ip [disabled]="ips.length === 0"  formControlName="ip"(selectionChange)="guardarIp($event.value,1,'',$event)" >
+                <mat-option  selected disabled >Seleccione una ip</mat-option>
+                <mat-option *ngFor="let p of ips" [value]="p.idIp" [id]="p.idIp+'z'"  (onSelectionChange)="elementOption($event.source)"> 
+                    {{p.ip }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+            <div class="cajaBx">
+                <ng-template #placeholder></ng-template>
+            </div>
+            <br>
+        <div>
+        
+            <h2>Credenciales</h2>
+            <mat-form-field appearance="fill">
+            <mat-label>Usuario</mat-label>
+            <mat-select id="usuario" formControlName="idUsuario">
+                <mat-option selected disabled>Seleccione un Usuario</mat-option>
+                <mat-option *ngFor="let user of usuarios" [value]="user.idUsuario">{{user.usuario}}</mat-option>
+            </mat-select>
+            </mat-form-field>
+        
+            <mat-form-field appearance="outline">
+                <mat-label>Ingresa tu contraseña</mat-label>
+                            <input matInput class = "matInput" formControlName="contrasena" [type]="hide ? 'password' : 'text'" required>
+                            <mat-icon  matSuffix (click)="hide = !hide">
+                            {{hide ? 'visibility' : 'visibility_off'}}
+                            </mat-icon>
+              </mat-form-field>
+            
+            <mat-form-field appearance="outline">
+            <mat-label>SNMP</mat-label>
+            <input matInput type="text" formControlName="snmp">
+            </mat-form-field>
+            
+        </div>
+    </div>
+</div>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+    <button mat-button style="background-color:brown; color: white;" mat-dialog-close>Cancel</button>
+    <button mat-button style="background-color:#3f51b5; color: white;" cdkFocusInitial (click)="enviar()">
+        <ng-container *ngIf="data.opc === false; else elseTemplate">
+            Crear
+        </ng-container>
+        <ng-template #elseTemplate>
+            Actualizar
+        </ng-template> 
+    </button>
+</mat-dialog-actions>
+</form>

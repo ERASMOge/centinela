@@ -1,0 +1,128 @@
+.preloader {
+    width: 60px;
+    height: 60px;
+    border: 10px solid #eee;
+    border-top: 10px solid #0c82ff ;
+    border-radius: 50%;
+    animation-name: girar;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    cursor:wait;
+  }
+  @keyframes girar {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /**Mensaje si hay clientes o no*/
+
+.existe{
+  margin-top: 5%;
+  margin-bottom: 5%;
+  text-align: center;
+}
+.barriba {
+  display: flex;
+  justify-content: space-between;
+}
+#nuevoc {
+  align-self: center;
+}
+
+.toggle {
+  align-self: center;
+}
+
+   /**.buscar{
+display: flex;
+float: right;
+   }*/
+
+  .containerMat{
+      display: flex;
+      width: auto;
+  }
+
+  th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+    
+      text-align: center;
+  padding:4px ;
+  }
+
+  table, .tabla {
+    width: 100%;
+    overflow: auto;
+    text-align: center;  
+  }
+  nav{
+      margin-left:20px;
+      width: 30%;
+  } 
+  .button{
+    background-color: #3f51b5;
+  color: white;
+  } 
+  .menu{
+      width: auto;
+      border-radius: 100px;
+  }
+  
+  .icon{
+    font-size: 18px;
+  }
+    
+  
+
+  table {
+    border-color:none ;
+  }
+
+  @media screen and (max-width:1220px) {
+  td{
+      font-size: 10px;
+  }
+  th{
+    font-size: 10px;
+  }
+
+  .barriba {
+        display: block;
+        text-align: center;
+    }
+    
+    #nuevoc {
+        margin-top: 20px;
+        margin-bottom: 35px;
+    }
+
+    #nuevoc button{
+        width: 100%;
+        height: 40px;
+    }
+    .mat-form-field {
+        width: 100%;
+    }
+  
+}
+
+mat-paginator {
+  border: none !important;
+}
+
+.buscar{
+  display: flex;
+}
+
+
+
+
+
+
+       
+    
+          

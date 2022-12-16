@@ -1,0 +1,177 @@
+
+
+.preloader {
+    width: 60px;
+    height: 60px;
+    border: 10px solid #eee;
+    border-top: 10px solid #0c82ff ;
+    border-radius: 50%;
+    animation-name: girar;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    cursor:wait;
+  }
+  
+  @keyframes girar {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  
+  .existe{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    text-align: center;
+   }
+
+
+th.mat-sort-header-sorted {
+    color: black;
+
+}
+
+.barriba {
+    display: flex;
+    justify-content: space-between;
+}
+.babajo {
+    margin-top: 20px;
+    margin-block: auto ;
+    display: inline-flex;
+}
+
+ .botonContainer {
+    display: inline-flex;
+}
+
+.botonNuevo  {
+    float: right;
+}
+
+.import {
+    margin-block: auto;
+}
+
+
+.contenedorTablas{
+    margin-top: 40px;
+}
+
+.menu{
+    width: auto;
+    border-radius: 100px;
+}
+/*Ordenando tablas*/
+table {
+    width: 100%;
+}
+table td,
+table th{
+   /* font-size: 15px;*/
+    text-align: center;
+}
+table td{
+    padding: 2px;
+}
+
+#segmentos table{
+    margin-top: 53px;
+}
+
+/*Asignando tablas responsivas*/
+
+@media screen and (max-width:1328px) {
+    table td{
+       /* font-size: 15px;*/
+        text-align: center;
+    }
+    table th{
+      /*  font-size: 15px;*/
+        text-align: center;
+    }
+}
+@media screen and (max-width:1163px) {
+    mat-card-content.mat-card-content {
+        width: 100%;
+    }
+    .contenedorTablas.row {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    div#lista {
+        width: 100%;
+    }
+    div#segmentos {
+        width: auto;
+    }
+}
+
+.cabecera{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cabecera .link {
+    align-self: center;
+}
+@media screen and (max-width: 768px) {
+    #lista table td,
+    #lista table th{
+       /* font-size: 15px !important;*/
+        text-align: center;
+    }
+    #segmentos table td,
+    #segmentos table th{
+      /*  font-size: 15px !important;*/
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 688px) {
+
+    table td[data-titulo]{
+    display: flex;
+   }
+   
+   table td[data-titulo]::before {
+       content: attr( data-titulo );
+       width: 90px;
+       font-weight: bold;
+   }
+   
+   table tr{
+       display: flex;
+       flex-direction: column;
+       height: auto;
+       width: auto;
+   }
+
+  /*  #lista table th,
+    #lista table td{
+        font-size: 15px !important;
+    }*/
+
+ /*   #segmentos table th, 
+    #segmentos table td{
+        font-size: 15px !important;
+    }*/
+
+   tr.mat-header-row.cdk-header-row {
+       display: none;
+   }
+   
+   table{
+     width: 100%;
+   }
+  
+  
+
+
+
+}

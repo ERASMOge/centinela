@@ -1,0 +1,69 @@
+<h2 mat-card-title align="center">Buscar identificador</h2>
+<mat-divider></mat-divider>
+    <mat-card-content class="mat-typography">
+    <div>
+        <mat-form-field appearance="legacy">
+            <mat-label>Nombre de la empresa</mat-label>
+            <input type="text"
+            matInput 
+            [formControl]="controlEmpresa"
+            (keyup)="buscarEmpresa(idNombre.value,$event)"
+            [matAutocomplete]="auto1" #idNombre
+            id="iEmpresa"
+             placeholder="Nombre de la empresa" >
+             <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete" >
+                <mat-option  *ngFor="let i of filtradoEmpresa|async" [value]="i.nombre" (onSelectionChange)="empresaSeleccionada(i)">
+                    {{i.nombre}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="legacy" >
+            <mat-label>Razon social</mat-label>
+            <input type="text"
+            matInput
+            [formControl]="controlRazon"
+            (keyup)="buscarRazon(idRazon.value,$event)"
+            [matAutocomplete]="auto2" #idRazon
+            id="iRazon"
+            matInput placeholder="Razon social" >
+            <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete" >
+                <mat-option  *ngFor="let i of filtradoRazon | async" [value]="i.nombre" (onSelectionChange)="razonSeleccionada(i)">
+                    {{i.nombre}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="legacy">
+            <mat-label>Nombre Servicio</mat-label>
+            <input type="text"
+            matInput
+            id="iServicio"
+            [formControl]="controlServicio"
+            (keyup)="buscarServicio(idServicio.value,$event)"
+            [matAutocomplete]="auto3" #idServicio matInput placeholder="Nombre servicio" >
+            <mat-autocomplete  autoActiveFirstOption #auto3="matAutocomplete" >
+                <mat-option  *ngFor="let i of filtradoServicio | async" [value]="i.nombre" (onSelectionChange)="servicioSeleccionada(i)">
+                    {{i.nombre}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+    <div class="buscar">
+        <button mat-raised-button color="primary" (click)="buscarIdentificador()">Buscar</button>
+    </div>
+    <h3><b>IDENTIFICADORES</b></h3>
+    <div class="container identificadores">
+        <mat-radio-group (change)="seleccionado($event)">
+        <ng-template #placeholder></ng-template>
+        </mat-radio-group>
+    </div>
+
+    </mat-card-content>
+
+    <mat-dialog-actions align="center">
+        <button mat-button style="background-color:brown; color: white;"  mat-dialog-close>Cerrar</button>
+        <button mat-button style="background-color:#3f51b5; color: white;" cdkFocusInitial (click)="enviarIdentificador()">Seleccionar</button>
+    </mat-dialog-actions>

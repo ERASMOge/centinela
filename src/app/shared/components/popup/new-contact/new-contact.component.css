@@ -1,0 +1,57 @@
+
+/**Ajustando el orden de los input*/
+
+mat-dialog-content{
+    text-align: justify;
+}
+
+
+.mat-form-field{
+    width: 80%;
+}
+
+/**Creando cajas para los servicios**/
+.cajaBx {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    width: 80%;
+    border: 1px solid #ccc;
+    overflow-y: auto;
+}
+
+.cajaBx2 {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    border: 1px solid #ccc;
+    overflow-y: auto;
+    margin: 0 10% 0 10%;
+}
+.col-form-label {
+    text-align: center;
+}
+
+.form-control{
+    height: 165px;
+    overflow: auto;
+}
+
+
+#botones , button{
+    display:flex; 
+    justify-content: center;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+/***Quitando peculiaridad del input (flechitas)*/
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] { -moz-appearance:textfield; }

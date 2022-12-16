@@ -1,0 +1,104 @@
+<h2 mat-dialog-title> <ng-container *ngIf="data.opc == false; else elseTemplate">
+    Crear usuario
+  </ng-container>
+  <ng-template #elseTemplate>
+    Actualizar cliente
+  </ng-template></h2>
+  <form >
+  <mat-dialog-content class="mat-typography">
+
+    <div>
+      <mat-form-field appearance="standard">
+        <mat-label>Usuario</mat-label>
+        <input matInput   placeholder="Usuario" #usuario > 
+      </mat-form-field>
+      </div>
+
+    <div>
+    <mat-form-field appearance="standard">
+      <mat-label>Nombre</mat-label>
+      <input matInput   placeholder="Nombre" #nombre > 
+    </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field appearance="standard">
+          <mat-label>Apellido paterno
+          </mat-label>
+          <input matInput   placeholder="Ingrese apellido paterno" #apellidop>   
+        </mat-form-field>
+         
+    </div>
+    <div>
+        <mat-form-field appearance="standard">
+          <mat-label>Apellido materno
+          </mat-label>
+          <input matInput   placeholder="Ingrese apellido materno" #apellidom>   
+        </mat-form-field>
+         
+    </div>
+    <div>
+        <mat-form-field appearance="standard">
+          <mat-label>Correo
+          </mat-label>
+          <input matInput   placeholder="Ingrese correo" #correo>   
+        </mat-form-field>
+         
+    </div>
+   
+    <div  >
+        <mat-form-field appearance="standard">
+          <mat-label> Contraseña
+          </mat-label>
+          <input matInput    placeholder="Ingrese apellido paterno" #contrasena>   
+        </mat-form-field>
+         
+    </div>
+    <div>
+        <mat-form-field appearance="standard">
+          <mat-label>Repetir contraseña
+          </mat-label>
+          <input matInput   placeholder="Ingrese apellido paterno" #Rcontrasena>   
+        </mat-form-field>
+         
+    </div>
+    
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Estatus</mat-label>
+      <mat-select  matNativeControl [(value)]="data.estatus "required #estatus>
+        <mat-option value="0" disabled>Seleccione un estatus</mat-option>
+        <mat-option value="1">activo</mat-option>
+        <mat-option value="2">inactivo</mat-option>
+        <mat-option value="3">ausente</mat-option>
+      </mat-select>
+    </mat-form-field>
+    </div>
+    
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label >Grupo</mat-label>
+          <mat-select #grupo matNativeControl>
+            <mat-option [value]="option.value" *ngFor="let option of Grupos" >{{ option.viewValue }} </mat-option>
+          </mat-select>
+        </mat-form-field>
+        </div>
+
+    <div id="botones">
+     
+    </div>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions align="center">
+    <button mat-button style="background-color:brown; color: white;" mat-dialog-close>Cancel</button>
+    <button mat-button style="background-color:#3f51b5; color: white;"  (click)="subir(usuario.value,nombre.value,apellidop.value,apellidom.value,correo.value,contrasena.value,estatus.value,grupo.value,Rcontrasena.value)" cdkFocusInitial>
+      <ng-container *ngIf="data.opc == false; else elseTemplate">
+        Crear
+      </ng-container>
+      <ng-template #elseTemplate>
+        Actualizar
+      </ng-template>
+      </button>
+  </mat-dialog-actions>
+  </form>
+  

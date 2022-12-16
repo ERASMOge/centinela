@@ -1,0 +1,195 @@
+table {
+    width: 100%;
+    box-shadow: none;
+}
+.tabla{
+    overflow-x:auto ;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+mat-paginator {
+    width: 194px;
+}
+
+/**modificacion extra*/
+.contenedorHead1 {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10%;
+    padding-right: 10%;
+} 
+
+/**Acomodando mat cards*/
+mat-card {
+    margin: 5px;
+
+}
+
+.mat2{
+    display: flex;
+    margin-top: 10px;
+}
+
+.mat2 mat-card{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+mat-card-title{
+    margin-top: 10%;
+}
+
+/*Graficas lineales,pie,barra,lista*/
+mat-card#graficaLineal {
+    width: 100%;
+}
+
+mat-card.pie {
+    width: 30%;
+    display: flex;
+    align-items: center;
+}
+
+mat-card#graficaBarra {
+    width: 100%;
+}
+
+mat-card#listaTickets {
+    overflow-x: auto;
+    width: 100%;
+}
+mat-card#calendario {
+    /*display: flex;
+    align-items: center;*/
+}
+mat-card#pieAgentes {
+    width: auto;
+}
+/*Modificando mat card de las listas (top 10)*/
+.cardList {
+    display: block;
+    width: 20%;
+}
+
+.seccion {
+    padding-bottom: 10px;
+    overflow-y: auto;
+}
+
+.seccion:hover{
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+/*configuracion del calendario*/
+.mat-calendar {
+    width: 90%;
+}
+
+.containerCalendar {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+
+#plusCalendario svg:hover{
+    background-color: #d6fbd6;
+    cursor: pointer;
+}
+
+#plusCalendario {
+    margin-left: 90px;
+}
+
+#bCalendario svg:hover {
+    cursor: pointer;
+    background-color: #fbd6d6;
+}
+
+#bCalendario {
+    margin-left: 90px;
+}
+
+#fecha {
+    text-align: center;
+}
+#fecha1 {
+    text-align: center;
+}
+
+#dosfechas{
+    display: flex;
+    text-align: center;
+}
+
+.botones {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn{
+    border: transparent;
+}   
+
+.responsivePrimerFila {
+    display: flex;
+    width: 100%;
+}
+
+
+.matgrid{
+    overflow-y: auto;
+    height: 300px;
+}
+
+/***Responsive de las graficas de pie */
+@media (max-width:973px) {
+    .mat2 {
+       display: block;
+    }
+    .primerFila{
+        flex-direction: column-reverse;
+    }
+    .primerFila, .responsivePrimerFila {
+        display: flex;
+    }
+
+    mat-card.pie{
+        width: auto;
+    }
+    
+    #top10Empresas, #estadosTickets, #listaTickets {
+        width: 100%;
+    }
+
+    #pieTipos {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+        
+}
+
+@media (max-width:754px) {
+    .responsivePrimerFila {
+        display: flex;
+        flex-flow: wrap-reverse;
+    }
+
+     mat-card#pieAgentes, #matCalendario { 
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }   
+
+    .containerCalendar {
+        display: flex;
+        justify-content: center;
+    }
+    .mat-calendar {
+        width: 250px;
+    }
+}

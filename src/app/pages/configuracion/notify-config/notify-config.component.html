@@ -1,0 +1,24 @@
+<div class="card mb-4">
+    <div class="card-header">Configuracion de notificaciones</div>
+    <div class="card-body">
+        <form>
+            <!-- Form Group (username)-->
+            <div class="mb-3">
+                <label class="small mb-1" for="inputUsername">Correo emisor/Router caido</label>
+                <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" [value]="correo_caido" #correo_caido2 >
+            </div>
+            <!-- Form Row-->
+            <div class="row gx-3 mb-3">
+               
+                <div class="col-md-6">
+                    <label class="small mb-1" for="inputFirstName">No. movil emisor/router caido </label>
+                    <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" [value]="no_movil" #no_movil2>
+                </div>
+                
+                <div class="col-md-6">
+                    <label class="small mb-1" for="inputLastName">Correo reporte pago</label>
+                    <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" [value]="correo_pago" #correo_pago2>
+                </div>
+            </div>
+            <button mat-raised-button	(click)="notify()" (click)="editarNotify(correo_pago2.value,correo_caido2.value,no_movil2.value)" >Guardar cambios</button>
+            <notifier-container></notifier-container>

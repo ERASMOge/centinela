@@ -1,0 +1,50 @@
+<h2 mat-dialog-title> Actualizar direccion</h2>
+  <form [formGroup]="direccionForm">
+    <mat-dialog-content class="mat-typography">
+        <mat-form-field appearance="fill">
+            <mat-label>Ciudad</mat-label>
+            <mat-select  #selectCiudad formControlName="ciudad">
+              <mat-option value="0" disabled selected>Asigne un servicio</mat-option>
+              <mat-option *ngFor="let i of ciudadesArray" [value]="i.idCiudad">{{i.nombre}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Estado</mat-label>
+            <input matInput   placeholder="Ingrese el estado de la ciudad" formControlName="estado">   
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Latitud</mat-label>
+            <input matInput   placeholder="Ingrese su latitud" formControlName="latitud">   
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Longitud</mat-label>
+            <input matInput   placeholder="Ingrese su longitud" formControlName="longitud">   
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Calle</mat-label>
+            <input matInput   placeholder="Ingrese nombre de calle" formControlName="avenida">   
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Numero</mat-label>
+            <input matInput   placeholder="Ingrese numero" formControlName="numero">   
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Codigo postal</mat-label>
+            <input matInput   placeholder="Ingrese codigo postal" formControlName="codigoPostal">   
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Colonia</mat-label>
+            <input matInput   placeholder="Ingrese colonia" formControlName="colonia">   
+          </mat-form-field>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="center">
+      <button mat-button style="background-color:brown; color: white;" mat-dialog-close>Cancel</button>
+      <button mat-button style="background-color:#3f51b5; color: white;"  cdkFocusInitial (click)="enviar()" >
+          Actualizar
+        </button>     
+    </mat-dialog-actions> 
+  </form>
+
+  

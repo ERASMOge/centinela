@@ -1,0 +1,98 @@
+<div class="matCardTop" fxLayout="row" fxLayoutAlign="center none">
+
+  <div fxFlex="95%">
+
+    <mat-card>
+      <mat-card-content>
+         <h2>Control de Ips</h2>
+        <div class="barriba"> 
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Subred</mat-label>
+            <mat-select matNativeControl (selectionChange)="filtrar($event.value)" required>
+              <mat-option value="0" selected disabled>Seleccione un IP</mat-option>
+              <mat-option value="-1" (click)="ipServicios()">Todas las Ips</mat-option>
+              <mat-option *ngFor="let item of segmentos; let i = index" [value]="item.segmentoInicial+'-'+item.segmentoFinal" ><b>{{item.segmento}}</b> : {{item.segmentoInicial}} - {{item.segmentoFinal}}  </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="botones">
+          <button style="margin-top: auto; margin-bottom: auto;" mat-raised-button color="primary" (click)="exportar($event)"><mat-icon>download</mat-icon>Exportar </button>
+        </div>
+        <div class="botones">
+          <button style="margin-top: auto; margin-bottom: auto;" mat-raised-button color="primary" (click)="refrescar()"><mat-icon>refresh</mat-icon>Refrescar </button>
+        </div>
+      <form>
+      <div class="row">
+        <div class="col" style="margin-top: auto; margin-bottom: auto;" hidden>
+          <button mat-raised-button (click)="buscar(inputBuscar.value)" color="primary">Buscar</button>
+        </div>
+        <div class="col" >
+          <mat-form-field appearance="standard" >
+            <mat-label>Buscar</mat-label>
+            <input matInput  placeholder="Buscar coincidencia..." #inputBuscar>   
+          </mat-form-field>
+          </div>
+        </div>
+      </form>
+
+      </div>
+      <div style="overflow-x: auto;">
+        <table mat-table [dataSource]="dataSource" >          
+          <ng-container matColumnDef="ip" matSort>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header=""> IP</th>
+            <td mat-cell *matCellDef="let element"> {{element.ip}}</td>
+          </ng-container>
+          <ng-container matColumnDef="tipoip">
+            <th mat-header-cell *matHeaderCellDef >TIPO IP</th>
+            <td mat-cell *matCellDef="let element">{{element.tipoip}}</td>
+          </ng-container>
+          <ng-container matColumnDef="utilizado">
+            <th mat-header-cell *matHeaderCellDef >UTILIZADO POR</th>
+            <td mat-cell *matCellDef="let element"> {{element.utilizado? element.utilizado:"Ninguno"}} </td>
+          </ng-container>
+          <ng-container matColumnDef="tipoequipo">
+            <th mat-header-cell *matHeaderCellDef >TIPO DE EQUIPO</th>
+            <td mat-cell *matCellDef="let element">{{element.tipoequipo.length===0? 'Ninguno':element.tipoequipo}}</td>
+          </ng-container>
+          <ng-container matColumnDef="ping">
+            <th mat-header-cell *matHeaderCellDef >PING</th>
+
+            <td mat-cell *matCellDef="let element"> 
+              <ng-container *ngIf=" element.ping == undefined; else elseTemplate">
+                <mat-icon >sync</mat-icon> Cargando
+              </ng-container>
+              <ng-template #elseTemplate>
+                <ng-container *ngIf="element.ping  == 400; else elseTemplate">
+                  <mat-icon style="color : red ;">wifi</mat-icon> No hay conexion  
+                </ng-container>
+                <ng-template #elseTemplate>
+                  <mat-icon style="color : green ;">wifi</mat-icon> Si hay conexion
+                </ng-template>
+              </ng-template>  
+            </td>
+
+          </ng-container>
+          
+          <ng-container matColumnDef="opciones">
+            <th mat-header-cell *matHeaderCellDef >OPCIONES</th>
+          <td mat-cell *matCellDef="let element"> 
+              <button class="menu" mat-button [matMenuTriggerFor]="menu">...</button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="Configuracion()"><mat-icon>settings</mat-icon>Editar</button>   
+                <button mat-menu-item ><mat-icon>delete</mat-icon>Eliminar</button> 
+              </mat-menu> </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <div class="preloader" style="position: relative; left:45%; margin-top:5%; margin-bottom: 5%;" [hidden]="cargando"></div>
+        <div class="existe" [hidden] = "comentario">No se encontraron ips registradas... </div>
+        <mat-paginator  #paginator
+        (page)="pageEvents($event)"
+        [pageSize]="10"></mat-paginator>
+      </div>
+    </mat-card-content>
+    </mat-card>
+</div>
+</div>

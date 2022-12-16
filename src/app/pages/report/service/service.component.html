@@ -1,0 +1,89 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center none">
+
+    <div fxFlex="95%">
+      <div >
+      <mat-card >
+        <mat-card-content>
+           <h2>Reportes - Servicios</h2>
+          
+           <div class="barriba">
+            <div>
+                <mat-form-field appearance="standard">
+                  <mat-label>Buscar</mat-label>
+                  <input matInput (keyup)="applyFilter($event)" placeholder="Buscar coincidencia..." #input>   
+                </mat-form-field>
+                </div>
+          <div id="grupoBotones">  
+            <div class="boton">
+              <button mat-raised-button color="primary"><mat-icon>location_city</mat-icon>Ciudad</button>
+            </div>
+            <div class="boton">
+                <button mat-raised-button color="primary"><mat-icon>calendar_today</mat-icon>Estado</button>
+            </div>
+            <div class="boton">
+                <button mat-raised-button color="primary" ><mat-icon>group</mat-icon>R.S.</button>
+            </div>
+            <div class="boton">
+                <button mat-raised-button color="primary"><mat-icon>ballot</mat-icon>Excel</button>
+            </div>
+            <div class="boton">
+                <button mat-raised-button color="primary"><mat-icon>picture_as_pdf</mat-icon>PDF</button>
+            </div>
+          </div>
+          </div>
+          
+          <div style="overflow-x: auto;">
+          <table mat-table [dataSource]="dataSource"  style="width:100%;">          
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef >Id</th>
+              <td mat-cell *matCellDef="let element" >{{element.id}}</td>
+            </ng-container>
+            <ng-container matColumnDef="servicio">
+              <th mat-header-cell *matHeaderCellDef >Servicio</th>
+              <td mat-cell *matCellDef="let element" >{{element.servicio}}</td>
+            </ng-container>
+            <ng-container matColumnDef="plan">
+              <th mat-header-cell *matHeaderCellDef >Plan</th>
+              <td mat-cell *matCellDef="let element" >{{element.plan}}</td>
+            </ng-container>
+            <ng-container matColumnDef="rs">
+              <th mat-header-cell *matHeaderCellDef >R.S.</th>
+              <td mat-cell *matCellDef="let element" >{{element.rs}}</td>
+            </ng-container>
+            <ng-container matColumnDef="Ip">
+              <th mat-header-cell *matHeaderCellDef >Ip</th>
+              <td mat-cell *matCellDef="let element" >{{element.ip}}</td>
+            </ng-container>
+            <ng-container matColumnDef="estado">
+              <th mat-header-cell *matHeaderCellDef >Estatus</th>
+              <td mat-cell *matCellDef="let element">{{element.estatus}} </td>
+            </ng-container>
+            <ng-container matColumnDef="ciudad">
+              <th mat-header-cell *matHeaderCellDef >Ciudad</th>
+              <td mat-cell *matCellDef="let element">{{element.ciudad}} </td>
+            </ng-container>
+            <ng-container matColumnDef="opciones">
+              <th mat-header-cell *matHeaderCellDef >OPCIONES</th>
+            <td mat-cell *matCellDef="let element"> 
+                <button class="menu" mat-button [matMenuTriggerFor]="menu">...</button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="editar()"><mat-icon>settings</mat-icon>Editar</button>  
+                  <button mat-menu-item (click)="eliminar()"><mat-icon>delete</mat-icon>Eliminar</button> 
+                </mat-menu> </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <div class="preloader" style="position: relative; left:45%; margin-top:5%; margin-bottom: 5%;" hidden></div>
+          <div class="existe" hidden>No se encontraron reportes... </div>
+        
+        
+          <mat-paginator  #paginator
+          [pageSize]="10"
+          [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+        </div>
+      </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  </div>

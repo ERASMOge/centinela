@@ -1,0 +1,108 @@
+
+  
+  /**Mensaje si hay clientes o no*/
+
+  .existe{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    text-align: center;
+   }
+
+/**Datos de tabla*/
+table {
+    width: 100%;
+}
+
+#tablaCliente{
+    margin-top: 5%;
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+}
+
+.barriba {
+    display: flex;
+    justify-content: space-between;
+}
+
+.babajo {
+    display: inline-flex;
+}
+
+ .boton {
+    margin-right: 20px;
+    padding: 9px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 500;
+    box-shadow:1px 1px 2px #b6b6b6;
+    cursor: pointer;
+    border: none;
+    background: #51b9f6;
+    box-sizing: border-box;
+    position: relative;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    white-space: nowrap;
+    text-decoration: none;
+    vertical-align: baseline;
+    text-align: center;
+    margin-left: 10;
+    min-width: 63px;
+    line-height: 36px;
+    padding: 0 16px;
+    border-radius: 4px;
+    overflow: visible;
+    transform: translate3d(0, 0, 0);
+    transition: background 400ms cubic-bezier(0.25, 0.8, 0.25, 1),box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+.import {
+    align-self: center;
+}
+
+
+#nuevoc {
+    align-self: center;
+}
+
+.menu{
+    width: auto;
+    border-radius: 100px;
+}
+
+/*div principal*/
+.principal{
+    margin-top: 15px;
+}
+
+@media screen and (max-width:768px) {
+    .barriba {
+        display: block;
+        text-align: center;
+    }
+    
+    #nuevoc {
+        margin-top: 20px;
+        margin-bottom: 35px;
+    }
+
+    #nuevoc button{
+        width: 100%;
+        height: 40px;
+    }
+    .mat-form-field {
+        width: 100%;
+    }
+
+
+}
+
+
+

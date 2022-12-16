@@ -1,0 +1,99 @@
+.boton {
+   
+    background-color: #3f51b5;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 500;
+    box-shadow:1px 1px 4px #b6b6b6;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.import {
+    text-align: center;
+    margin-block: auto;
+}
+.tittle{
+    background-color:darkgrey;   
+}
+
+mat-card-header{
+      
+    font-size: 2vw 
+}
+button{
+    background-color: #3f51b5;
+    color: white;
+}
+
+h3,h4,p{
+    font-family: Roboto, Arial, sans-serif;
+  }
+  h4{
+    width: 250px;
+  }
+  
+  .uploadzone {
+    min-height: 4vw;
+    min-width: 4vw;
+    display: table;
+    width: 100%;
+    height: 100px;
+    background-color:   #eee;
+    border: grove 1px #111;
+  }
+  
+  .text-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  
+  .centered {
+    font-family: sans-serif;
+    font-size: 1.3em;
+    font-weight: ligth;
+    text-align:center;
+  }
+  .arrow{
+
+text-align: center;}
+
+.justify-content-around{
+    margin-top: 10px;
+}
+h2{
+    text-align: center;
+    font-size: 25px;
+}
+mat-select{
+  width: 200%;
+}
+.cancelar{
+  background-color:  rgb(165, 42, 42);
+
+}
+
+@media screen and (max-width:775px) {
+  h2{
+      font-size: 20px;
+  }
+ 
+        mat-select {
+            width: 80%;
+        }
+        
+        .mat-form-field {
+            width: 100%;
+           
+        }
+
+        .justify-content-around{
+          margin-top: 10px;
+          margin-right: 10px;
+      }
+     
+    
+    }
+
+

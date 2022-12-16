@@ -1,0 +1,11 @@
+.barriba {
+    display: flex;
+}
+.boton {
+    margin: auto;
+    margin-left: 10px ;
+}
+#grupoBotones {    
+    display: flex;
+    width: 35vw;
+}

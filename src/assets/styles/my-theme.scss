@@ -1,0 +1,49 @@
+@use '@angular/material' as mat;
+@include mat.core();
+//@include mat.strong-focus-indicators();
+
+
+$indigo-palette:(
+  50 : #f0fafe,
+    100 : #d9f2fe,
+    200 : #c0eafd,
+    300 : #a7e1fc,
+    400 : #94dafb,
+    500 : #81d4fa,
+    600 : #79cff9,
+    700 : #6ec9f9,
+    800 : #64c3f8,
+    900 : #51b9f6,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #eef8ff,
+    A700 : #d4efff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #535353,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #535353,
+    )
+);
+
+$my-primary: mat.define-palette($indigo-palette, 900);
+$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A100);
+
+$my-theme: mat.define-light-theme((
+ color: (
+   primary: $my-primary,
+   accent: $my-accent,
+ )
+));
+@include mat.all-component-themes($my-theme);
+@include mat.strong-focus-indicators-theme($my-theme);

@@ -1,0 +1,383 @@
+<div fxLayout="row" style="margin: 1%;" fxLayoutAlign="center none">
+
+    <div fxFlex="100%" >
+      <mat-card id="mat-principal">
+        <mat-card-header>
+            <mat-card-title>Dashboard - Tickets</mat-card-title>
+        </mat-card-header>
+          <div class="mat2 primerFila">
+            <mat-card class="cardList" id="top10Empresas" >
+                <h1 style="font-weight: bold;">TOP 10 CLIENTES </h1>
+                <ng-container *ngIf="empresa.length === 0; else elseTemplate">
+                    <mat-grid-list  cols="4" >
+                        <mat-divider></mat-divider>
+                            <span><b>No hay Clientes</b></span>
+                    </mat-grid-list>
+                </ng-container>
+                <ng-template #elseTemplate>
+                    <div class="matgrid">
+                        <mat-grid-list *ngFor="let com of empresa"  cols="4" >
+                        <div class="seccion" (click)="abrirTopEmpresaTicket(com.idCliente,com.nombre)">
+                            <mat-divider></mat-divider>
+                                <div class="cuerpo" >
+                                    <div>Cliente: <label style="font-weight: bold; text-transform:capitalize;">{{com.nombre}}</label> </div>
+                                    <div>Tickets: <label style="font-weight: bold; text-transform:capitalize;">{{com.totalTicket}}</label> </div>
+                                    <mat-icon style="color: rgb(175, 24, 175);
+                                    margin-left: 67px;
+                                    display: flex;
+                                    margin-top: -19px;
+                                    font-size: 19px;" >confirmation_number</mat-icon>
+                                </div>
+                        </div>
+                        </mat-grid-list>
+                    </div>
+                </ng-template>
+                
+                
+            </mat-card >
+            <div class="responsivePrimerFila">
+              <mat-card id="graficaLineal">
+                <apx-chart
+                [series]="chartOptionsLine.series!"
+                [chart]="chartOptionsLine.chart!"
+                [xaxis]="chartOptionsLine.xaxis!"
+                [dataLabels]="chartOptionsLine.dataLabels!"
+                [grid]="chartOptionsLine.grid!"
+                [stroke]="chartOptionsLine.stroke!"
+                [title]="chartOptionsLine.title!"
+                [tooltip]="chartOptionsLine.tooltip!"
+              ></apx-chart>
+              </mat-card>
+              
+              <mat-card id="matCalendario">
+                <div class="containerCalendar">
+                    <div>
+                    <div class="botones" [hidden]="oCalendario === false">
+                        <button class="btn" id="adelante" [disabled]="ocultarDate === false" (click)="cambiarCalendario()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-square" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm11.5 5.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                            </svg>
+                        </button>
+                        <button class="btn" id="atras" [disabled]="ocultarDate === true" (click)="cambiarCalendario()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-square" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4.5 5.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                            </svg>
+                        </button>
+                       
+                    </div>
+                    <div id="plusCalendario" (click)="cambiarCalendario()" (click)="otroCalendario()" [hidden]="oCalendario===true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-plus" viewBox="0 0 16 16">
+                            <path d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"/>
+                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                          </svg>
+                    </div>
+                    <div  [hidden]="ocultarDate === true">
+                        <mat-calendar [(selected)]="selected" [maxDate]="selected2" (selectedChange)="cambiarFecha1(selected!)"></mat-calendar>
+
+                    </div>
+                    <div  [hidden]="ocultarDate === false">  
+                        <mat-calendar [(selected)]="selected2" [minDate]="selected" (selectedChange)="cambiarFecha2(selected2!)"></mat-calendar>
+
+                    </div>
+                    <div [hidden]="oCalendario === false"  (click)="otroCalendario()" id="bCalendario">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                          </svg>
+                    </div>
+                      </div>
+                      <div id="fecha"> 
+                        <div [hidden]="fechaRango === false" id="dosfechas"> 
+                            <div id="fecha1" [style]="ocultarDate === true || selectedFake === '' ? 'border: none;' : 'border: 1px dashed #000; padding:2px; '">{{selected !==undefined?selectedFake:""}} </div> <div> &nbsp;&nbsp;</div> 
+                            <div id="fecha2" [style]="ocultarDate === false || selectedFake2 === '' ? ' border: none; ': 'border: 1px dashed #000; padding: 2px; '">{{selected2 !==undefined?selectedFake2:""}}</div>
+                        </div>
+                        <span  [hidden]="fechaRango === true">{{selected !==undefined?selectedFake:""}}</span>
+                    </div>
+                    </div>
+                    
+              </mat-card>
+            </div>
+          </div>
+          <div class="mat2">
+            <mat-card class="cardList" id="estadosTickets" >
+                <h3 style="font-weight: bold; font-size: 14px;">TICKETS POR ESTADO </h3>
+                <mat-grid-list >
+                        <mat-divider></mat-divider>
+                            <div class="seccion" (click)="abrirEstadoEmpresas(1)">
+                               
+                            <div> Abierto   <mat-icon style="color: green; float: right; margin-top:10px;">door_front</mat-icon></div>
+                            <div style="font-weight: bold;">Total: {{
+                                estadoServicio[0]!==undefined && estadoServicio[0].idEstadoTicket===1?estadoServicio[0].totalTicket:
+                                estadoServicio[1]!==undefined && estadoServicio[1].idEstadoTicket===1?estadoServicio[1].totalTicket:
+                                estadoServicio[2]!==undefined && estadoServicio[2].idEstadoTicket===1?estadoServicio[2].totalTicket:
+                                estadoServicio[3]!==undefined && estadoServicio[3].idEstadoTicket===1?estadoServicio[3].totalTicket:0}}</div>
+                            </div>
+                            <mat-divider></mat-divider>
+                            <div class="seccion" (click)="abrirEstadoEmpresas(2)">
+                                <div> En progreso   <mat-icon style="color: rgb(0, 75, 128); float: right; margin-top:10px;">refresh</mat-icon></div>
+                                <div style="font-weight: bold;">Total: {{
+                                estadoServicio[0]!==undefined && estadoServicio[0].idEstadoTicket===2?estadoServicio[0].totalTicket:
+                                estadoServicio[1]!==undefined && estadoServicio[1].idEstadoTicket===2?estadoServicio[1].totalTicket:
+                                estadoServicio[2]!==undefined && estadoServicio[2].idEstadoTicket===2?estadoServicio[2].totalTicket:
+                                estadoServicio[3]!==undefined && estadoServicio[3].idEstadoTicket===2?estadoServicio[3].totalTicket:0}}</div>
+                            </div>
+                            <mat-divider></mat-divider>
+                            <div class="seccion" (click)="abrirEstadoEmpresas(3)">
+                                <div> Pausado   <mat-icon style="color: rgb(128, 0, 115); float: right; margin-top:10px;">pause</mat-icon></div>
+                                <div style="font-weight: bold;">Total: {{
+                                estadoServicio[0]!==undefined && estadoServicio[0].idEstadoTicket===3?estadoServicio[0].totalTicket:
+                                estadoServicio[1]!==undefined && estadoServicio[1].idEstadoTicket===3?estadoServicio[1].totalTicket:
+                                estadoServicio[2]!==undefined && estadoServicio[2].idEstadoTicket===3?estadoServicio[2].totalTicket:
+                                estadoServicio[3]!==undefined && estadoServicio[3].idEstadoTicket===3?estadoServicio[3].totalTicket:0}}</div>
+                            </div>
+                            <mat-divider></mat-divider>
+                            <div class="seccion"  (click)="abrirEstadoEmpresas(4)">
+                                <div> Cerrado   <mat-icon style="color: rgb(128, 0, 17); float: right; margin-top:10px;">lock</mat-icon></div>
+                                <div style="font-weight: bold;">Total: {{
+                                estadoServicio[0]!==undefined && estadoServicio[0].idEstadoTicket===4?estadoServicio[0].totalTicket:
+                                estadoServicio[1]!==undefined && estadoServicio[1].idEstadoTicket===4?estadoServicio[1].totalTicket:
+                                estadoServicio[2]!==undefined && estadoServicio[2].idEstadoTicket===4?estadoServicio[2].totalTicket:
+                                estadoServicio[3]!==undefined && estadoServicio[3].idEstadoTicket===4?estadoServicio[3].totalTicket:0}}</div>      
+                            </div>              
+                </mat-grid-list>
+            </mat-card>
+            <div class="responsivePrimerFila">
+            <mat-card class="pie" id="pieAgentes">
+                <apx-chart class="pieApex"
+                [series]="chartOptionsPieAgentes.series!"
+                [chart]="chartOptionsPieAgentes.chart!"
+                [dataLabels]="chartOptionsPieAgentes.dataLabels!"
+                [labels]="chartOptionsPieAgentes.labels!"
+                [title]="chartOptionsPieAgentes.title!"
+                [theme]="chartOptionsPieAgentes.theme!"
+                [responsive]="chartOptionsPieAgentes.responsive!"
+                [legend]="chartOptionsPieAgentes.legend!"
+              ></apx-chart>
+            </mat-card>
+            
+            <mat-card id="graficaBarra">
+                <apx-chart
+                [series]="chartOptionsBar.series!"
+                [chart]="chartOptionsBar.chart!"
+                [dataLabels]="chartOptionsBar.dataLabels!"
+                [plotOptions]="chartOptionsBar.plotOptions!"
+                [yaxis]="chartOptionsBar.yaxis!"
+                [legend]="chartOptionsBar.legend!"
+                [fill]="chartOptionsBar.fill!"
+                [stroke]="chartOptionsBar.stroke!"
+                [tooltip]="chartOptionsBar.tooltip!"
+                [xaxis]="chartOptionsBar.xaxis!"
+                [title]="chartOptionsBar.title!"
+              ></apx-chart>
+          </mat-card>
+        </div>
+        </div>
+        <div id="paginator">
+        
+            <!--<mat-paginator #paginator class="all-tickets"
+            (page)="pageEvents($event)"
+            [pageSize]="6"
+            hidePageSize="true"
+            aria-label="Select page">
+            </mat-paginator>-->
+            <mat-paginator #paginator2 class="all-tickets"
+            [pageSize]="5"
+            hidePageSize="true"
+            aria-label="Select page">
+            </mat-paginator>
+          </div>
+          <div class="mat2">
+            <!--<mat-card id="listaTickets">
+                <mat-grid-list>
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                    <ng-container matColumnDef="idTicket">
+                      <th mat-header-cell *matHeaderCellDef> Ticket </th>
+                      <td mat-cell *matCellDef="let element" [routerLink]="['/admin/tickets/edit-ticket/',element.idTicket]"> {{element.idTicket}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="servicio">
+                      <th mat-header-cell *matHeaderCellDef> servicio </th>
+                      <td mat-cell *matCellDef="let element" [routerLink]="['/admin/tickets/edit-ticket/',element.idTicket]"> {{element.servicio}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="fechaAbierta">
+                        <th mat-header-cell *matHeaderCellDef> Fecha abierta </th>
+                        <td mat-cell *matCellDef="let element" [routerLink]="['/admin/tickets/edit-ticket/',element.idTicket]"> {{element.fechaAbierta}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="fechaCerrada">
+                        <th mat-header-cell *matHeaderCellDef> Fecha cerrada </th>
+                        <td mat-cell *matCellDef="let element" [routerLink]="['/admin/tickets/edit-ticket/',element.idTicket]">{{element.fechaCerrada ? element.fechaCerrada: "No asignado"}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="grupo">
+                        <th mat-header-cell *matHeaderCellDef> Grupo </th>
+                        <td mat-cell *matCellDef="let element" [routerLink]="['/admin/tickets/edit-ticket/',element.idTicket]"> {{element.grupo}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="estado">
+                        <th mat-header-cell *matHeaderCellDef> Estado </th>
+                        <td mat-cell *matCellDef="let element" [routerLink]="['/admin/tickets/edit-ticket/',element.idTicket]"> {{element.estado}} </td>
+                    </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    <div class="existe" [hidden]="hayUsers()">No se encontraron resultados... </div>
+
+                </mat-grid-list>
+            </mat-card>-->
+            <mat-card id="listaTickets">
+                <mat-grid-list>
+                <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
+                    <ng-container matColumnDef="idTicket">
+                      <th mat-header-cell *matHeaderCellDef> Ticket </th>
+                      <td mat-cell *matCellDef="let element" [routerLink]="['/admin/tickets/edit-ticket/',element.idTicket]"> {{element.idTicket}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="servicio">
+                      <th mat-header-cell *matHeaderCellDef> servicio </th>
+                      <td mat-cell *matCellDef="let element" [routerLink]="['/admin/tickets/edit-ticket/',element.idTicket]"> {{element.servicio}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="fechaAbierta">
+                        <th mat-header-cell *matHeaderCellDef> Fecha abierta </th>
+                        <td mat-cell *matCellDef="let element" [routerLink]="['/admin/tickets/edit-ticket/',element.idTicket]"> {{element.fechaAbierta}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="fechaCerrada">
+                        <th mat-header-cell *matHeaderCellDef> Fecha cerrada </th>
+                        <td mat-cell *matCellDef="let element" [routerLink]="['/admin/tickets/edit-ticket/',element.idTicket]">{{element.fechaCerrada ? element.fechaCerrada: "No asignado"}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="grupo">
+                        <th mat-header-cell *matHeaderCellDef> Grupo </th>
+                        <td mat-cell *matCellDef="let element" [routerLink]="['/admin/tickets/edit-ticket/',element.idTicket]"> {{element.grupo}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="estado">
+                        <th mat-header-cell *matHeaderCellDef> Estado </th>
+                        <td mat-cell *matCellDef="let element" [routerLink]="['/admin/tickets/edit-ticket/',element.idTicket]"> {{element.estado}} </td>
+                    </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    <div class="existe" [hidden]="hayUsers()">No se encontraron resultados... </div>
+
+                </mat-grid-list>
+            </mat-card>
+            <mat-card class="pie" id="pieTipos">
+                <apx-chart class="pieApex"
+                [series]="chartOptionsPieTipos.series!"
+                [chart]="chartOptionsPieTipos.chart!"
+                [labels]="chartOptionsPieTipos.labels!"
+                [title]="chartOptionsPieTipos.title!"
+                [theme]="chartOptionsPieTipos.theme!"
+                [dataLabels]="chartOptionsPieAgentes.dataLabels!"
+                [responsive]="chartOptionsPieTipos.responsive!"
+              ></apx-chart>
+            </mat-card>
+        </div>
+        <div class="mat2">
+            <mat-card class="cardList" id="estadosTickets" >
+                <h3 style="font-weight: bold; font-size: 14px;">TICKETS OLVIDADOS </h3>
+                <mat-grid-list >
+                        <mat-divider></mat-divider>
+                            <div class="seccion" (click)="abrirSinSeguimiento(5,tiempo)">
+                               
+                            <div> Sin seguimiento   <mat-icon style="color: rgb(255, 87, 51); float: right; margin-top:10px;">sms</mat-icon></div>
+                            <div style="font-weight: bold;">Total: {{
+                                sinSeguimientos[0]!==undefined && sinSeguimientos[0].idEstadoTicket===1?sinSeguimientos[0].totalTicket:''}}
+                                {{
+                                    sinSeguimientos[0]!==undefined && sinSeguimientos[0].idEstadoTicket===2?sinSeguimientos[0].totalTicket:''}}
+                            </div>
+                            </div>
+                            <mat-divider></mat-divider>
+                            <div class="seccion" (click)="abrirSinRespuesta(6)">
+                                <div> Sin respuesta   <mat-icon style="color: rgb(199, 0, 57); float: right; margin-top:10px;">phone_missed</mat-icon></div>
+                                <div style="font-weight: bold;">Total: {{
+                                    sinRespuestas[0]!==undefined && sinRespuestas[0].idEstadoTicket===1?sinRespuestas[0].totalTicket:''}}
+                                    {{
+                                        sinRespuestas[0]!==undefined && sinRespuestas[0].idEstadoTicket===2?sinRespuestas[0].totalTicket:''}}
+                                        {{
+                                            sinRespuestas[0]!==undefined && sinRespuestas[0].idEstadoTicket===3?sinRespuestas[0].totalTicket:''}}
+                                            {{
+                                                sinRespuestas[0]!==undefined && sinRespuestas[0].idEstadoTicket===4?sinRespuestas[0].totalTicket:''}}
+                                </div>
+                            </div>         
+                </mat-grid-list>
+            </mat-card>
+            <mat-card class="cardList" id="estadosTickets" >
+                <h3 style="font-weight: bold; font-size: 14px;">TIEMPO DE SOLUCIÓN </h3>
+                <mat-grid-list >
+                        <mat-divider></mat-divider>
+                            <div class="seccion" (click)="abrirDentroEstandar(3,estandar)">
+                               
+                            <div> Dentro del estándar   <mat-icon style="color: green; float: right; margin-top:10px;">timer</mat-icon></div>
+                            <div style="font-weight: bold;">Total: {{
+                                dentroEstandar[0]!==undefined && dentroEstandar[0].idEstadoTicket===1?dentroEstandar[0].totalTicket:''}}
+                                {{
+                                    dentroEstandar[0]!==undefined && dentroEstandar[0].idEstadoTicket===2?dentroEstandar[0].totalTicket:''}}
+                                    {{
+                                        dentroEstandar[0]!==undefined && dentroEstandar[0].idEstadoTicket===3?dentroEstandar[0].totalTicket:''}}
+                                        {{
+                                            dentroEstandar[0]!==undefined && dentroEstandar[0].idEstadoTicket===4?dentroEstandar[0].totalTicket:''}}
+                            </div>
+                            </div>
+                            <mat-divider></mat-divider>
+                            <div class="seccion" (click)="abrirFueraEstandar(4,estandar)">
+                                <div> Fuera del estándar   <mat-icon style="color: rgb(199, 0, 57); float: right; margin-top:10px;">timer_off</mat-icon></div>
+                                <div style="font-weight: bold;">Total: {{
+                                    fueraEstandar[0]!==undefined && fueraEstandar[0].idEstadoTicket===1?fueraEstandar[0].totalTicket:''}}
+                                    {{
+                                        fueraEstandar[0]!==undefined && fueraEstandar[0].idEstadoTicket===2?fueraEstandar[0].totalTicket:''}}
+                                        {{
+                                            fueraEstandar[0]!==undefined && fueraEstandar[0].idEstadoTicket===3?fueraEstandar[0].totalTicket:''}}
+                                            {{
+                                                fueraEstandar[0]!==undefined && fueraEstandar[0].idEstadoTicket===4?fueraEstandar[0].totalTicket:''}}
+                                </div>
+                            </div>           
+                </mat-grid-list>
+            </mat-card>
+            <mat-card class="cardList" id="top10Empresas" >
+                <h3 style="font-weight: bold; font-size: 14px;">TIKETS MALOS </h3>
+                <ng-container *ngIf="ticketMalo.length === 0; else template">
+                    <mat-grid-list  cols="4" >
+                        <mat-divider></mat-divider>
+                            <span><b>No hay tickets</b></span>
+                    </mat-grid-list>
+                </ng-container>
+                <ng-template  #template>
+                    <div class="matgrid">
+                        <mat-grid-list *ngFor="let com of ticketMalo"  cols="4" >
+                            <div class="seccion" (click)="abrirModalTicketMalo(com.id,com.nombre,com.nombreCompleto,minuto)">
+                                <mat-divider></mat-divider>
+                                    <div class="cuerpo" >
+                                        <div>Agente: <label style="font-weight: bold; text-transform:capitalize;">{{com.nombre}}</label> </div>
+                                        <div>Tickets: <label style="font-weight: bold; text-transform:capitalize;">{{com.totalTicket}}</label> </div>
+                                        <mat-icon style="color: rgb(199, 0, 57);
+                                        margin-left: 67px;
+                                        display: flex;
+                                        margin-top: -19px;" >sync_problem</mat-icon>
+                                    </div>
+                            </div>
+                        </mat-grid-list>
+                    </div>
+                </ng-template>                
+            </mat-card >
+            <mat-card id="graficaBarra">
+                <apx-chart
+                    [series]="chartOptionsBar2.series!"
+                    [chart]="chartOptionsBar2.chart!"
+                    [dataLabels]="chartOptionsBar2.dataLabels!"
+                    [plotOptions]="chartOptionsBar2.plotOptions!"
+                    [yaxis]="chartOptionsBar2.yaxis!"
+                    [legend]="chartOptionsBar2.legend!"
+                    [fill]="chartOptionsBar2.fill!"
+                    [stroke]="chartOptionsBar2.stroke!"
+                    [tooltip]="chartOptionsBar2.tooltip!"
+                    [xaxis]="chartOptionsBar2.xaxis!"
+                    [title]="chartOptionsBar2.title!">
+            </apx-chart>
+          </mat-card>
+        </div>
+        </mat-card>
+    </div>
+  </div>

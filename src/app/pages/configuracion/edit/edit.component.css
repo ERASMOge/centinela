@@ -1,0 +1,51 @@
+button{
+    background-color: #3f51b5;
+
+}
+.boton {
+    margin-right: 5px;
+    background-color: #3f51b5;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 500;
+    box-shadow:1px 1px 4px #b6b6b6;
+    cursor: pointer;
+}
+.import {
+    margin-block: auto;
+}
+.col {
+    padding-right: 0;
+    width: 100%;
+    background-color: white;
+  }
+
+    .boton {
+        margin-right: 5px;
+        background-color: #3f51b5;
+        padding: 10px;
+        border-radius: 5px;
+        color: white;
+        font-weight: 500;
+        box-shadow:1px 1px 4px #b6b6b6;
+        cursor: pointer;
+    }
+    .import {
+        margin-block: auto;
+    }
+    .col {
+        padding-right: 0;
+        width: 100%;
+        background-color: white;
+      }
+      
+      .col figure img {
+        max-width: 60%;
+    
+      }
+      
+      ::-webkit-scrollbar {
+        overflow: hidden;
+      }
+   

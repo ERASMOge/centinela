@@ -1,0 +1,15 @@
+.tabla{
+    overflow-x:auto ;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+td{
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+th{
+    padding-right: 10px;
+    padding-left: 10px;
+}

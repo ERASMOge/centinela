@@ -1,0 +1,73 @@
+<h2 mat-dialog-title> <ng-container *ngIf="data.opc === false; else elseTemplate">
+    Crear ticket
+  </ng-container>
+  <ng-template #elseTemplate>
+    Actualizar ticket
+  </ng-template></h2>
+  <mat-dialog-content class="mat-typography">
+    <form >
+    <div>
+    <mat-form-field appearance="standard">
+      <mat-label>Departamento</mat-label>
+      <input matInput  [value]="data.empresa? data.empresa: '' " placeholder="Nombre de empresa" #empresa > 
+    </mat-form-field>
+    <mat-icon>title</mat-icon>  
+    </div>
+    <div>
+        <mat-form-field appearance="standard">
+          <mat-label>Asunto</mat-label>
+          <mat-select  matNativeControl [(value)]="data.estatus "required #select>
+            <mat-option value="0" disabled>Seleccione un estatus</mat-option>
+            <mat-option value="1">activo</mat-option>
+            <mat-option value="2">inactivo</mat-option>
+            <mat-option value="3">ausente</mat-option>
+          </mat-select>        </mat-form-field>
+        <mat-icon>title</mat-icon> 
+    </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Servicio</mat-label>
+      <mat-select  matNativeControl [(value)]="data.estatus "required #select>
+        <mat-option value="0" disabled>Seleccione un estatus</mat-option>
+        <mat-option value="1">activo</mat-option>
+        <mat-option value="2">inactivo</mat-option>
+        <mat-option value="3">ausente</mat-option>
+      </mat-select>
+    </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Estado</mat-label>
+        <mat-select  matNativeControl [(value)]="data.estatus "required #select>
+          <mat-option value="0" disabled>Seleccione un estatus</mat-option>
+          <mat-option value="1">activo</mat-option>
+          <mat-option value="2">inactivo</mat-option>
+          <mat-option value="3">ausente</mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Agente</mat-label>
+          <mat-select  matNativeControl [(value)]="data.estatus "required #select>
+            <mat-option value="0" disabled>Seleccione un estatus</mat-option>
+            <mat-option value="1">activo</mat-option>
+            <mat-option value="2">inactivo</mat-option>
+            <mat-option value="3">ausente</mat-option>
+          </mat-select>
+        </mat-form-field>
+        </div>
+    <div id="botones">
+      <button mat-button style="background-color:brown; color: white;" mat-dialog-close>Cancel</button>
+      <button mat-button style="background-color:#3f51b5; color: white;"  cdkFocusInitial>
+        <ng-container *ngIf="data.opc === false; else elseTemplate">
+          Crear
+        </ng-container>
+        <ng-template #elseTemplate>
+          Actualizar
+        </ng-template>
+        </button>
+    </div>
+    </form>
+  
+  </mat-dialog-content>

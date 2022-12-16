@@ -1,0 +1,3 @@
+<h2><b> Sin seguimiento </b></h2>
+<p>Tickets sin seguimiento o comentado hace más de <b>{{this.data.horaConfig}} horas</b></p>
+<app-table-sin-seguimiento [selectedFake]="this.data.fecha1" [selectedFake2]="this.data.fecha2" [estatus]="this.data.estatus===undefined?0:this.data.estatus" [horaAntigua]="this.data.hora1" [horaActual]="this.data.hora2" [dialogRef]="dialogRef" ></app-table-sin-seguimiento>

@@ -1,0 +1,375 @@
+<div fxLayout="row" fxLayoutAlign="center none" class="matCardTop">
+    <div fxFlex="95%">
+        <mat-card>
+            <div class="cabecera-link">
+                <div id="link">
+                    <a style="text-decoration: none;">Solicitud ticket > </a>
+                </div>
+            </div>
+            <mat-card-header>
+                <h2>Nueva solicitud</h2>
+            </mat-card-header>
+            <mat-card-content class="sub-container">
+
+                <mat-card id="form">
+                    <mat-card-content>
+                        <button type="button" mat-stroked-button class="otroBuscador"
+                            (click)="abrirBuscadosIdentificador()">¿No encuentra su id? <mat-icon>search</mat-icon>
+                        </button>
+                        <form [formGroup]="formTicket">
+                            <div class="campo">
+                                <mat-form-field appearance="legacy">
+                                    <mat-label>Buscar identificador</mat-label>
+                                    <input type="text" aria-label="Number" matInput [formControl]="myControl"
+                                        (keyup)="buscarIdentificador(id.value,$event)" [matAutocomplete]="auto" #id>
+
+                                    <!-- <mat-autocomplete (optionSelected)="opcionSeleccionada(id.value,$event.option.id)"-->
+                                    <mat-autocomplete (optionSelected)="opcionSeleccionada(id.value,$event.option.id)"
+                                        autoActiveFirstOption #auto="matAutocomplete">
+                                        <mat-option *ngFor="let option of filteredOptions  | async"
+                                            [value]="option.split(' ')[0]+' '+option.split(' ')[1]"
+                                            [id]="option.split(' ')[2]">
+                                            {{option.split(" ")[0]}} - {{option.split(" ")[1]}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field class="inputs" appearance="fill">
+                                    <mat-label>De : (seleccione un contacto)</mat-label>
+                                    <mat-select formControlName="contactoCorreo" #selectContacto
+                                        (selectionChange)="agregarContacto(selectContacto.value)">
+                                        <mat-option value="-1" disabled>Selecciona un contacto</mat-option>
+                                        <mat-option *ngFor="let contacto of contactoLista let i=index" [value]="i">
+                                            {{contacto.nombre}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-hint align="end">
+                                        <div><a (click)="agregarOtroContacto()" class="linkContactoCc">agregar otro
+                                                Contacto </a></div> &nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;<div
+                                            class="linkContactoCc" (click)="agregarCopia(false)"><a> agregar Cc</a>
+                                        </div>
+                                    </mat-hint>
+                                </mat-form-field>
+                            </div>
+
+                            <div [hidden]="agregarMasContacto">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Contactos | Enviar Cc</mat-label>
+                                    <input type="text" [formControl]="myControlContacts" matInput
+                                        [matAutocomplete]="auto2" #autoContacto>
+
+                                    <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="contactoArray($event)"
+                                        [displayWith]="displayFn">
+                                        <mat-option *ngFor="let con of filteredContacts | async  let i = index"
+                                            [id]="i+'_'" [value]="con" #selectedOption>
+                                            {{con.nombre}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+
+                                    <div id="mat-group-suffix">
+                                        <ng-template #matIcon></ng-template>
+                                    </div>
+                                    <mat-hint align="end">
+                                        <div><a (click)="agregarCopia(true)" class="linkContactoCc" style="color:red;">
+                                                Cerrar Cc</a></div>
+                                    </mat-hint>
+
+                                </mat-form-field>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="campo">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Origen</mat-label>
+                                    <mat-select formControlName="origen">
+                                        <mat-option value="0" disabled selected>Seleccione un origen</mat-option>
+                                        <mat-option value="1">Llamada directa</mat-option>
+                                        <mat-option value="2">WhatsApp</mat-option>
+                                        <mat-option value="3">Correo</mat-option>
+                                        <mat-option value="4">Asesor</mat-option>
+                                        <mat-option value="5">Facebook</mat-option>
+                                        <mat-option value="6">Pagina web</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="campo">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Grupo</mat-label>
+                                    <mat-select formControlName="cveGrupo" #idGrupo
+                                        (selectionChange)="buscarUsuarios()">
+                                        <mat-option [value]="option.value" *ngFor="let option of Grupos">{{
+                                            option.viewValue }} </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="campoAgente">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Agente</mat-label>
+                                    <mat-select formControlName="cveUsuario">
+                                        <mat-option *ngFor="let i of usuarios" [value]="i.idUsuario">{{i.usuario}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="campo">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Asunto</mat-label>
+                                    <mat-select formControlName="asunto">
+                                        <mat-option *ngFor="let i of asuntosArray" [value]="i.idAsunto">{{i.nombre}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="campo">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Prioridad</mat-label>
+                                    <mat-select formControlName="prioridad">
+                                        <mat-option value="1">Baja</mat-option>
+                                        <mat-option value="2">Media</mat-option>
+                                        <mat-option value="3">Alta</mat-option>
+                                        <mat-option value="4">Urgente</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="campo">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Tipo</mat-label>
+                                    <mat-select formControlName="tipo">
+                                        <mat-option value="1">Soporte</mat-option>
+                                        <mat-option value="2">Atencion</mat-option>
+                                        <mat-option value="3">Solicitud</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="campo">
+                                <mat-form-field appearance="legacy">
+                                    <mat-label>Descripcion</mat-label>
+                                    <textarea formControlName="descripcion" matInput placeholder=""
+                                        rows="15"></textarea>
+                                </mat-form-field>
+                            </div>
+                            <div class="inputs">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Incidencia</mat-label>
+                                    <mat-select formControlName="cveIncidencia">
+                                        <mat-option value="0" disabled>No hay registradas</mat-option>
+                                        <mat-option value="1">Ninguna</mat-option>
+                                    </mat-select>
+                                    <mat-hint align="end">
+                                        <div><a (click)="agregarOtroContacto()" class="linkContactoCc">agregar
+                                                incidencia
+                                            </a></div>
+                                    </mat-hint>
+
+                                </mat-form-field>
+                            </div>
+
+                            <div class="botonesSolicitud">
+                                <button mat-stroked-button color="primary" [disabled]="desacBtnCrear">Cancelar</button>
+                                <button mat-raised-button color="primary" id="enviarTicket" (click)="enviarTicket()"
+                                    [disabled]="desacBtnCrear"></button>
+                            </div>
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+
+                <mat-card id="sidenav">
+                    <mat-tab-group>
+                        <mat-tab>
+                            <ng-template mat-tab-label>
+                                <mat-icon style="color: rgba(4, 255, 41, 0.927);" class="example-tab-icon">lan
+                                </mat-icon>
+                            </ng-template>
+                            <ng-container *ngTemplateOutlet="tabContent"></ng-container>
+                        </mat-tab>
+                        <mat-tab>
+                            <ng-template mat-tab-label>
+                                <mat-icon style="color: rgba(242, 203, 11, 0.815);" class="example-tab-icon">
+                                    room_service</mat-icon>
+                            </ng-template>
+                            <ng-container *ngTemplateOutlet="tabContent2"></ng-container>
+                        </mat-tab>
+                        <mat-tab>
+                            <ng-template mat-tab-label>
+                                <mat-icon style="color: rgba(0, 42, 255, 0.842);" class="example-tab-icon">info
+                                </mat-icon>
+                            </ng-template>
+                            <ng-container *ngTemplateOutlet="tabContent1"></ng-container>
+
+                        </mat-tab>
+                    </mat-tab-group>
+
+                    <ng-template #tabContent>
+
+                        <div class="bloques">
+                            <div class="bPrincipal">
+                                <h3 style="font-weight: bold;">Datos del servicio</h3>
+                                <div class="container">
+                                    <div class="row">
+                                        <div style="padding-left:0 ;" class="col-sm-1">
+                                            <mat-icon style="color:rgba(8, 156, 243, 0.799);">location_city</mat-icon>
+                                        </div>
+                                        <div class="col-sm" style="padding-right:0 ;">
+                                            <div style="font-weight: bold; margin-top: 5px;"> Empresa: </div>
+                                        </div>
+                                        <div class="col-sm" style="padding-right:0; padding-left: 0; ">
+                                            <div style="margin-top: 5px;"> {{datosServicio?.cliente ?
+                                                datosServicio?.cliente : "" }} </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div style="padding-left:0 ;" class="col-sm-1">
+                                            <mat-icon style="color:rgba(8, 156, 243, 0.799);">cell_tower</mat-icon>
+                                        </div>
+                                        <div class="col-sm" style="padding-right:0 ;">
+                                            <div style="font-weight: bold; margin-top: 5px;"> Plan: </div>
+                                        </div>
+                                        <div class="col-sm" style="padding-right:0; padding-left: 0; ">
+                                            <div style="margin-top: 5px;"> {{datosServicio?.plan ? datosServicio?.plan :
+                                                ""}} </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div style="padding-left:0 ;" class="col-sm-1">
+                                            <mat-icon style="color:rgba(8, 156, 243, 0.799);">bar_chart</mat-icon>
+                                        </div>
+                                        <div class="col-sm" style="padding-right:0 ;">
+                                            <div style="font-weight: bold; margin-top: 5px;">Estatus:</div>
+                                        </div>
+                                        <div class="col-sm" style="padding-right:0; padding-left: 0; ">
+                                            <div style="margin-top: 5px;"> {{datosServicio?.estatus ?
+                                                datosServicio?.estatus : ""}}</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <br>
+
+                                <div style="font-weight: bold;">
+                                    <mat-icon>radio</mat-icon> Ping radio:
+                                </div>
+                                <div *ngFor="let i of pingRadio; let o =index" class="device">
+                                    {{i.ping}} ({{i.ip}})<div>
+                                        <div [ngStyle]="{background: i.color}" class="circulo"></div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div style="font-weight: bold;">
+                                    <mat-icon>router</mat-icon> Ping router:
+                                </div>
+                                <div *ngFor="let i of pingRouter; let o =index" class="device">
+                                    {{i.ping}} ({{i.ip}})<div>
+                                        <div [ngStyle]="{background: i.color}" class="circulo"></div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div style="font-weight: bold;">
+                                    <mat-icon>devices_other</mat-icon> Ping otro:
+                                </div>
+                                <div *ngFor="let i of pingOtro; let o =index" class="device">
+                                    {{i.ping}} ({{i.ip}})<div>
+                                        <div [ngStyle]="{background: i.color}" class="circulo"></div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div style="font-weight: bold;">
+                                    <mat-icon>settings_input_antenna</mat-icon> Repetidoras:
+                                </div>
+                                <div *ngFor="let i of repetidoras; let o =index" class="device">
+                                    {{i}}
+                                </div>
+                            </div>
+
+                        </div>
+                    </ng-template>
+
+                    <ng-template #tabContent1>
+                        <div>
+                            <div class="bSecundario">
+                                <h3 style="font-weight: bold;">Datos Extras:</h3>
+                                <img src="../../../../assets/avatar.png" id="imgDatoExtra" />
+                                <p *ngIf="contactoPrincipal !== undefined">
+                                    {{contactoLista[contactoPrincipal!].nombre+"
+                                    "+contactoLista[contactoPrincipal!].apellidoPaterno+"
+                                    "+contactoLista[contactoPrincipal!].apellidoMaterno}}<br>
+                                    <ng-container
+                                        *ngIf="contactoLista[contactoPrincipal!].length > 23; else elseTemplate">
+                                        <span [title]="contactoLista[contactoPrincipal!].correo">Correo:
+                                            {{contactoLista[contactoPrincipal!].correo.substring(0,18)+"..."}}</span>
+                                    </ng-container>
+                                    <ng-template #elseTemplate>
+                                        <span> Correo: {{contactoLista[contactoPrincipal!].correo}}</span>
+                                    </ng-template>
+                                    <br />
+                                    Numero: {{contactoLista[contactoPrincipal!].celular}}<br />
+                                    Puesto: {{contactoLista[contactoPrincipal!].puesto}}<br />
+                                </p>
+                                <p *ngIf="contactoPrincipal === undefined">
+                                    <mat-icon>mail</mat-icon> Correo: <br />
+                                    <mat-icon>phone</mat-icon> Numero: <br />
+                                    <mat-icon>work</mat-icon> Puesto: <br />
+                                </p>
+                            </div>
+                            <hr />
+                            <div class="bSecundario">
+                                <h3 style="font-weight: bold;">Incidencias abiertas</h3>
+                                <ul>
+
+                                    <li>#???<br>
+                                        <mat-icon>calendar_month</mat-icon> fecha<br />
+                                        <mat-icon>bar_chart</mat-icon> Estado<br />
+                                    </li>
+                                    <li>#???<br>
+                                        <mat-icon>calendar_month</mat-icon> fecha<br />
+                                        <mat-icon>bar_chart</mat-icon> Estado<br />
+                                    </li>
+                                    <li><a href="#">Ver toda la actividad</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </ng-template>
+
+                    <ng-template #tabContent2>
+                        <div>
+                            <div class="bSecundario">
+                                <h3 style="font-weight: bold;">Tickets abiertas</h3>
+                                <ul>
+
+                                    <li *ngFor="let i of arrayPrevTicket">
+                                        <mat-divider vertical class="dividerLi"></mat-divider>
+                                        #{{i.idTicket}}<br>
+                                        <div>
+                                            <div style="display: flex;">
+                                                <div>
+                                                    <mat-icon style="color:rgba(8, 156, 243, 0.799);">calendar_month
+                                                    </mat-icon>
+                                                </div>
+                                                <div>
+                                                    <div style="font-weight: bold; margin-top: 5px;"> {{
+                                                        date(i.fechaAbierta)}} {{i.horaAbierta}}<br /></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="display: flex;">
+                                            <div>
+                                                <mat-icon style="color:rgba(8, 243, 133, 0.799);">bar_chart</mat-icon>
+                                            </div>
+                                            <div>
+                                                <div style="font-weight: bold; margin-top: 5px;"> Estado:
+                                                    Activo<br /><br /></div>
+                                            </div>
+                                        </div>
+
+                                    </li>
+                                    <li><a href="/admin/tickets/general">Ver toda la actividad</a></li>
+
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </ng-template>
+                </mat-card>

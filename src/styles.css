@@ -1,0 +1,283 @@
+@import "~angular-notifier/styles.css";
+
+/**Estilo para el mensaje de todas las tablas, de si hay resultados o no*/
+.existe{
+  margin-top: 5%;
+  margin-bottom: 5%;
+  text-align: center;
+ }
+
+/**Para cargar la pagina completa*/
+#contenedor_carga{
+  background-color: rgba(88, 88, 88, 60%);
+  height: 100%;
+  width:100%;
+  position: fixed;
+  -webkit-transition: all 1s none;
+  -o-transition: all 1s none;
+  transition: all 1s none;
+  z-index:10000;
+  display: none;
+}
+
+@keyframes typing {
+from {width: 0 }
+}
+
+.slider{
+overflow: hidden;
+position: absolute;
+left: 50%;
+bottom: 50%;
+transform: translate(-50%,-50%);
+text-align: center;
+color: white;
+
+}
+.slider ul{
+  display: flex;
+  animation: cambio 15s infinite alternate linear;
+  width: 400%;
+}
+.slider li{
+  width: 100%;
+  list-style: none;
+}
+
+.mat-card2{
+  padding: 0% 0% 3% 0% !important;
+}
+
+.mat-card-header2{
+  background: #f5f7f9; 
+  padding-top: 2%;
+}
+
+mat-card-content{
+  padding: 15px;
+  padding-bottom: 0;
+}
+mat-expansion-panel-header {
+  padding-top: 20%;
+}
+mat-card-title{
+  margin-top: 10%;
+  text-align: justify;
+}
+
+@keyframes cambio{
+  0%{margin-left: 0;}
+  20%{margin-left: 0;}
+  
+  25%{margin-left: -100%;}
+  45%{margin-left: -100%;}
+  
+  50%{margin-left: -200%;}
+  70%{margin-left: -200%;}
+  
+  75%{margin-left: -300%;}
+  100%{margin-left: -300%;}
+
+}
+
+@keyframes girar {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}
+
+/**Loading para componentes*/
+.preloader {
+  width: 60px;
+  height: 60px;
+  border: 10px solid #eee;
+  border-top: 10px solid #0c82ff ;
+  border-radius: 50%;
+  animation-name: girar;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  cursor:wait;
+}
+
+@keyframes girar {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.spinner {
+  left: 49%;
+  position: fixed !important;
+  top: 15%;
+  z-index: 9999;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.login-container {
+  height: 80vh;
+}
+
+.login-actions {
+  margin-left: unset !important;
+}
+
+.mat-list-item,
+.mat-menu-item {
+  font-size: 14px !important;
+}
+
+.command-wrapper button {
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+.mat-dialog-title {
+  margin: 0 !important;
+}
+
+.mat-column-actions {
+  flex: 0 0 60px;
+}
+
+.mat-table .mat-row:hover {
+  background-color: rgba(38, 15, 141, 0.075);
+}
+
+.mat-table td.mat-cell a:hover {
+  text-decoration: underline;
+}
+
+.mat-table td.mat-cell:first-child,
+.mat-table td.mat-footer-cell:first-child,
+.mat-table th.mat-header-cell:first-child {
+  padding-left: 20px !important;
+}
+
+.mat-table td.mat-cell:last-child,
+.mat-table td.mat-footer-cell:last-child,
+.mat-table th.mat-header-cell:last-child {
+  padding-right: 10px !important;
+}
+
+.mat-table .mat-cell a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.no-records {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.refresh-button {
+  margin-top: 8px !important;
+}
+
+.no-records .mat-icon {
+  width: 130px;
+  height: 130px;
+  font-size: 130px;
+  color: #c7c7c7;
+}
+
+p .mat-icon {
+  vertical-align: middle;
+}
+
+.mat-slide-toggle.full-width {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.mat-tooltip {
+  font-size: 14px;
+}
+
+.fixed-fab {
+  position: fixed !important;
+  right: 2%;
+  bottom: 3%;
+}
+
+/* Highlight on hover */
+.submitted-timesheet-day:not(.mat-calendar-body-disabled):hover>.mat-calendar-body-cell-content:not(.mat-calendar-body-selected),
+/* Highlight */
+.submitted-timesheet-day>div:not(.mat-calendar-body-selected) {
+  border-radius: 999px;
+  background-color: rgba(14, 152, 5, 0.25);
+}
+
+.table-wrapper {
+  overflow: auto;
+  height: calc(100vh - 270px);
+  max-height: 450px;
+  /* padding: 10px 5px; */
+}
+
+.animate {
+  animation-name: show;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.container{
+  margin-top: 10px;
+}
+
+/**Manuales filtro*/
+.toggle .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+  padding:  1px !important;
+  height: 1px;
+  margin-top: -10px;
+}
+
+/*mat card del fondo principal TOP*/
+.matCardTop{
+  margin-top: 15px;
+}
+
+
+/**botones del paginator del componente all-tickets*/
+.all-tickets button {
+  border: 1px solid  !important;
+  border-radius: 5px;
+  height: auto;
+  margin-left: auto;
+  padding-left: 0;
+  line-height: normal;
+  width: auto;
+}
+

@@ -1,0 +1,15 @@
+.tabla{
+    overflow-x: auto;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+td.mat-cell.cdk-cell {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/*ips*/
+.matformfield {
+    width: 113px !important;
+}

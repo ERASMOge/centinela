@@ -1,0 +1,105 @@
+/**Valores por default*/
+table {
+    width: 100%;
+}
+
+mat-card {
+    margin-top: 10px;
+    width: 100%;
+
+}
+
+
+/**imagen*/
+.c_imagen {
+    display: inline-flex;
+}
+
+.imagen {
+    margin-right: 20px;
+    width:70px;
+}
+
+.Hcontainer {
+    display: flex;
+    margin-right: 10%;
+
+}
+
+/** Estructura */
+.nivel2 {
+    width: 100%;
+}
+
+.containerP {
+    margin: 1%;
+}
+
+.izquierda {
+    display: inline-grid;
+    margin-right: 1%;
+    width: 49%;
+}
+
+.derecha {
+    display: inline-grid;
+    margin-left: 1%;
+    width: 49%;
+}
+/**Boton agregar**/
+.agregar{
+    float: right;
+}
+
+/**Decorando nivel 1 */
+.id{
+    align-self: center;
+    font-weight: bolder;
+    color: #12344d !important;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.nivel1Container .col{
+    margin-bottom: 10px;
+}
+
+
+/**Seccion de direccion*/
+
+.mapa{
+    align-self: center;
+}
+
+.mapa #verMapa {
+    margin: 5px;
+}
+
+.direccionDetalle {
+    width: 60%;
+}
+
+#mapa {
+    margin: 10px;
+}
+
+/** quitar efectos del nav**/
+a:active, a:hover {
+    color: black;
+}
+
+.matTab{
+    margin-top: 45px;
+} 
+
+
+
+.cabecera {
+    display: flex;
+}
+
+.link{
+    width: 100%;
+    text-align: end;
+}
+

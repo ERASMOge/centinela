@@ -1,0 +1,22 @@
+
+/***Acomodando inputs en el form*/
+mat-dialog-content{
+    text-align: justify;
+}
+
+.mat-form-field{
+    width: 80%;
+}
+
+#botones{
+    display:flex; 
+    justify-content: center;
+}
+
+
+#botones button{
+    margin-top: 10%;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+

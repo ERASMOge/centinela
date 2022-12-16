@@ -1,0 +1,92 @@
+/**Valores por default*/
+table {
+    width: 100%;
+}
+
+mat-card {
+    margin-top: 10px;
+}
+
+mat-card-title{
+    margin-top: 10%;
+}
+
+/** quitar efectos del nav**/
+a:active, a:hover {
+    color: black;
+}
+
+.matTab{
+    margin-top: 45px;
+} 
+
+
+.cabecera {
+    display: flex; 
+    justify-content: space-between;
+}
+
+.botones {
+    margin: auto;
+}
+
+table {
+    box-shadow: 1px 1px 1px 1px grey;
+}
+
+#tabla-p{
+    margin-top: 11%;
+}
+mat-card-content {
+    margin-top: 10px;
+}
+
+.preloader {
+    position: relative; 
+    left:45%; 
+    margin-top:5%; 
+    margin-bottom: 5%;
+}
+
+.cabecera-link{
+    
+    justify-content: flex-end;
+    margin-right: 3%;
+}
+
+img:hover{
+    filter: brightness(1.25);
+}
+
+img:active{
+    filter: brightness(0.90);
+}
+/**Flecha para regresar*/
+
+#regresar{
+    width: 30px;
+    height: 30px;
+    transform: rotate(180deg);
+}
+
+@media screen and (max-width:990px) {
+
+    mat-paginator{
+        width: auto !important;
+    }
+}
+
+@media screen and (max-width:500px) {
+
+    .cabecera{
+        flex-direction: column-reverse;
+    }
+    .cabecera .botones, button {
+        margin: 0;
+        width: 100%;
+        margin-top: 1%;
+    }
+    .mat-form-field {
+        display: block;
+    }
+}

@@ -1,0 +1,60 @@
+<h2 mat-dialog-title> <ng-container *ngIf="data.opc === false; else elseTemplate">
+  Crear Grupo
+</ng-container>
+<ng-template #elseTemplate>
+  Actualizar cliente
+</ng-template></h2>
+<form >
+<mat-dialog-content class="mat-typography">
+
+   <div>
+    <mat-form-field appearance="standard">
+      <mat-label>Nombre</mat-label>
+      <input matInput   placeholder="Nombre del grupo" #nombre > 
+    </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="standard">
+        <mat-label>Correo</mat-label>
+        <input matInput   placeholder="Correo del grupo" #correo > 
+      </mat-form-field>
+      </div>
+
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Estatus</mat-label>
+        <mat-select  matNativeControl [(value)]="data.estatus "required #estatus>
+          <mat-option value="0" disabled>Seleccione un estatus</mat-option>
+          <mat-option value="1">activo</mat-option>
+          <mat-option value="2">inactivo</mat-option>
+          <mat-option value="3">ausente</mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label >Rol</mat-label>
+        <mat-select #rol matNativeControl>
+          <mat-option [value]="option.value" *ngFor="let option of Roles" >{{ option.viewValue }} </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+
+  
+  
+    
+  <div id="botones">
+   
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <button mat-button style="background-color:brown; color: white;" mat-dialog-close>Cancel</button>
+  <button mat-button style="background-color:#3f51b5; color: white;"  (click)="subir(nombre.value,rol.value,estatus.value,correo.value)" cdkFocusInitial>
+    
+      Crear
+    </button>
+</mat-dialog-actions>
+</form>

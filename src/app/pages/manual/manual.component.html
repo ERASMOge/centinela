@@ -1,0 +1,96 @@
+
+<div class="matCardTop" fxLayout="row" fxLayoutAlign="center none">
+
+  <div fxFlex="95%">
+    <div >
+    <mat-card >
+      <mat-card-content>
+         <h2>Manuales</h2>
+        
+          <div class="barriba">
+            <div id="nuevoc">
+              <button mat-raised-button color="primary" (click)="newManual()"> <mat-icon>add</mat-icon> Nuevo</button>
+            </div>
+            <div class="toggle">
+              <mat-button-toggle-group class="toggle" >
+                <mat-button-toggle (click)="sortByUser()" > <mat-icon class="icon">person</mat-icon>   </mat-button-toggle>
+                <mat-button-toggle (click)="llenarTabla()" >  <mat-icon class="icon">group</mat-icon>  </mat-button-toggle>
+              </mat-button-toggle-group>
+              </div>
+            <div>
+              <mat-form-field appearance="standard">
+                <mat-label>Buscar</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Buscar coincidencia..." #input>   
+              </mat-form-field>
+              </div>
+          </div>
+          
+    
+        <div class="table" style="overflow-x: auto;">
+        <table mat-table [dataSource]="dataSource" >          
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef >Id</th>
+            <td mat-cell *matCellDef="let element">{{element.id}} </td>
+          </ng-container>
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef  >Nombre</th>
+            <td mat-cell *matCellDef="let element" >{{element.nombre}}</td>
+          </ng-container>
+          <ng-container matColumnDef="fecha">
+            <th mat-header-cell *matHeaderCellDef >Fecha</th>
+            <td mat-cell *matCellDef="let element" >{{element.fecha}}</td>
+          </ng-container>
+          <ng-container matColumnDef="tipo">
+            <th mat-header-cell *matHeaderCellDef  >Tipo</th>
+            <td mat-cell *matCellDef="let element ">{{element.tipo}}</td>
+          </ng-container>
+          <ng-container matColumnDef="ubicacion">
+            <th mat-header-cell *matHeaderCellDef  >Ubicacion</th>
+            <td mat-cell *matCellDef="let element" >{{element.ubicacion}}</td>
+          </ng-container>
+          <ng-container matColumnDef="usuario">
+            <th mat-header-cell *matHeaderCellDef  >Usuario</th>
+            <td mat-cell *matCellDef="let element" >{{element.usuario}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="cveAsunto">
+            <th mat-header-cell *matHeaderCellDef  >Asunto</th>
+            <td mat-cell *matCellDef="let element" >{{element.cveAsunto}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="tamaño">
+            <th mat-header-cell *matHeaderCellDef  >Tamaño</th>
+            <td mat-cell *matCellDef="let element" >{{element.tamano}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="archivo">
+            <th mat-header-cell *matHeaderCellDef  >Archivo</th>
+            <td mat-cell *matCellDef="let element" ><a  [download]= element.nombre [href]="sanitizeUrl(element.archivo)"><mat-icon>download</mat-icon></a></td>
+          </ng-container>
+          
+          <ng-container matColumnDef="opciones">
+            <th mat-header-cell *matHeaderCellDef >Opciones</th>
+          <td mat-cell *matCellDef="let element"> 
+              <button class="menu" mat-button [matMenuTriggerFor]="menu">...</button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item  (click)="editar(element.id,element.nombre)"><mat-icon>settings</mat-icon>Editar</button>  
+                <button mat-menu-item (click)="eliminar(element.id)"><mat-icon>delete</mat-icon>Eliminar</button> 
+              </mat-menu> </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <div class="preloader" style="position: relative; left:45%; margin-top:5%; margin-bottom: 5%;" [hidden]="cargando"></div>
+        <div class="existe" [hidden] = "hayManual()">No se encontraron resultados... </div>
+      
+      
+        <mat-paginator  #paginator
+        [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+      </div>
+    </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+</div>

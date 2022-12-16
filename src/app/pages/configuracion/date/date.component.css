@@ -1,0 +1,14 @@
+.calendario{
+   
+text-align: center;
+}
+.time{
+    text-align: center;
+}
+.timezone{
+    text-align: center;
+}
+button{
+    background-color: #3f51b5;
+    color: white;
+}

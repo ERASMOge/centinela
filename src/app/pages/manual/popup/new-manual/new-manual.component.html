@@ -1,0 +1,57 @@
+<div>
+        <h2>
+            Subir documentos
+        </h2>
+<div>
+   
+
+
+        <div style="padding: 15px;">
+            <div>
+                <div class="uploadzone" fileDragDrop (filesChangeEmiter)="onFileChange($event)">
+                    <div class="text-wrapper">
+                        <div class="centered">Arrastra y suelta archivos para subirlos</div>
+                        <div  class="arrow"> <mat-icon>file_upload</mat-icon></div>
+                        <div  class="import"  >
+                            <label  class="boton"  > 
+                              Seleccionar Archivos
+                            <input id="file1" (change)= "input($event)"  style="display: none !important" type="file" multiple/>
+                           
+                            </label>
+                            </div>     
+                    </div>
+                </div>
+            </div>
+            <div>
+                <mat-list>
+                    <h3 mat-subheader>Archivos</h3>
+                    <mat-list-item *ngFor="let file of files">
+                        <mat-icon  mat-list-icon>folder</mat-icon>
+                        <h4 mat-line>{{file.name}}</h4>
+                        <button mat-raised-button color="warn" (click)="deleteFile(file)">Delete</button>
+                        <mat-divider></mat-divider>
+                    </mat-list-item>
+                </mat-list>
+            </div>
+
+            <div class="col-md-6">
+                <label class="small mb-1" for="inputSecure">Asunto</label>
+                <mat-select #cveAsunto class="form-control" [value]= "selectedasunto" >
+                  
+                  <mat-option [value]="option.value" *ngFor="let option of asuntos" >{{ option.viewValue }} </mat-option>
+                </mat-select>
+            </div>
+        </div>
+</div>
+
+
+<div class="row justify-content-around">
+    <div class="col-4">
+        <button  mat-raised-button  (click)="subir(cveAsunto.value)"  >Agregar</button>
+    </div>
+    <div class="col-3">
+        <button  class="cancelar" mat-raised-button mat-dialog-close>Cancelar</button>
+    </div>
+  </div>
+
+</div>

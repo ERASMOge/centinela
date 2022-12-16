@@ -1,0 +1,252 @@
+.principal{
+    margin-top: 15px;
+}
+
+
+/**Acomodando mat-cards*/
+#form {
+width: 79%;
+}
+
+#sidenav{
+width: 20%;
+}
+
+
+.sub-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/**Orden de inputs/elementos */
+.campoAgente {
+    margin-left: 5%;
+}
+
+mat-form-field{
+    width: 100%;
+}
+
+.otroBuscador {
+    float:right;
+}
+
+.campoContacto {
+    margin-bottom: 10px;
+}
+
+.campoContacto .mat-hint {
+    font-size: small;
+}
+
+
+/***Navbar*/
+
+#imgDatoExtra {
+    width: 70px;
+    height: 70px;
+    text-align: center;
+}
+
+/**Lista nav*/
+.iconos {
+    display: flex;
+    flex-direction: column;
+}
+
+ li{
+    list-style: none;
+    font-size: 13px;
+ }
+
+ul li {
+    background: url('../../../../assets/icon/telephone.svg') no-repeat left top;
+    background-size: 30px;
+    padding-left: 40px;
+    padding-top: 7px;
+    }
+
+   /* img {
+        background: url('../../../../assets/icon/telephone.svg') no-repeat left top;
+        background-size: 30px;
+        padding-left: 40px;
+        padding-top: 31px;
+        }
+
+        .rowsLi{
+            padding-left: 40px;
+            padding-top: 10px;
+        }*/
+.dividerLi{
+    height: 78px;
+    background: #ccc;
+    border:0.1px solid #ccc;
+    position: absolute;
+    margin-left: -25px;
+    margin-top: 19px;
+}
+
+ul {
+    padding-left: 0;
+}
+
+/** link de contactos e input*/
+
+ .linkContactoCc{
+    float: right;
+    font-size: small;
+    color: blue;
+    text-decoration-line: underline;
+    cursor: pointer;
+}
+.inputs mat-hint {
+    display: flex;
+}
+
+.inputs{
+    margin-bottom: 10px;
+}
+
+.link{
+    margin-bottom: 10px;
+}
+
+/** PING */
+.circulo{
+    border: 1px solid black;
+    border-radius: 30px;
+    margin-left: 5px;
+}
+
+.device{
+    display: flex;
+    align-items: center;
+}
+
+.circulo {
+    border: 1px solid black;
+    background: grey;
+    width: max-content;
+    border-radius: 50px;
+    padding: 5px;
+}
+::ng-deep.mat-tab-label, ::ng-deep.mat-tab-label-active{
+    min-width: 0!important;
+    padding: 6px!important;
+    margin: 6px!important;
+   }
+
+
+   .mat-tab-label.mat-tab-label-active {
+    min-width: 25px !important;
+    padding: 5px;
+    background-color: transparent;
+    color: rgb(0, 255, 200);
+    font-weight: 700;
+}
+
+::ng-deep.mat-tab-label, ::ng-deep.mat-tab-label-active{
+    min-width: 0!important;
+    padding: 0 15% 0 15%!important;
+    margin: 7px 0 7px 0!important;
+   }
+
+
+/**Boton de enviar ticket*/
+
+.botonesSolicitud{
+    text-align: right;
+    align-self: center;
+}
+
+.botonesSolicitud button{
+    margin: 4px;
+}
+
+#enviarTicket::after{
+    content: "Crear ticket";
+}
+
+
+.button--loading::after {
+    content: "" !important;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 4px solid #ccc;
+    border-top-color: #357ae9;
+    border-radius: 50%;
+    animation: button-loading-spinner 1s ease infinite;
+}
+.button--loading {
+    background-color: #ccc;
+    height:2.5rem;
+    width: 102px;
+    bottom: 4px;
+}
+
+@keyframes button-loading-spinner {
+    from {
+        transform: rotate(0turn);
+    }
+
+    to {
+        transform: rotate(1turn);
+    }
+}
+/*cuando disminuye el tamaño de pantalla*/
+
+@media (max-width:1200px) {
+    .sub-container {
+        display: contents;
+        /*flex-flow: column-reverse;*/
+    }
+    #sidenav {
+        width: 100%;
+    }
+    #form {
+        width: 100%;
+    }
+
+    .bloques {
+        display: flex;
+    }
+    .bPrincipal {
+        width: 33%;
+    }
+    .bSecundario {
+        width: 100%;
+    }
+}
+
+
+/**responsive con una resolucion 1852px para abajo px como maximo
+y minimo 413px LINEAS DE la lista de etiquetas*/
+
+@media (max-width:785px) {
+    .col-sm{
+        width: 140px;
+        padding-left: 5px;
+        font-size: 12px;
+    }
+    
+}
+
+/*
+@media (max-width:688px) {
+    .dividerLi{
+        height: 138px;
+    }
+}
+
+@media (max-width:528px) {
+    .dividerLi{
+        height: 158px;
+    }
+}*/

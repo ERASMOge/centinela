@@ -1,0 +1,35 @@
+
+<div>
+<mat-card style="text-align: center;">
+    <div>
+<span>Grupo: {{this.data.nombregrupo}}</span>
+    </div>
+</mat-card>
+</div>
+
+
+<div class="table" style="overflow-x: auto;">
+    <table mat-table [dataSource]="dataSource" style="width: 100%;" >          
+      <ng-container matColumnDef="usuario" >
+        <th mat-header-cell *matHeaderCellDef  >Usuario</th>
+        <td mat-cell *matCellDef="let element">{{element.usuario}} </td>
+      </ng-container>
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef  >Nombre del agente</th>
+        <td mat-cell *matCellDef="let element" >{{element.nombre}}</td>
+      </ng-container>
+    
+
+      <ng-container matColumnDef="opciones">
+        <th mat-header-cell *matHeaderCellDef >Opciones</th>
+      <td mat-cell *matCellDef="let element"> 
+          <button class="menu" mat-button [matMenuTriggerFor]="menu">...</button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item  ><mat-icon>settings</mat-icon>Editar</button>  
+            <button mat-menu-item  ><mat-icon>delete</mat-icon>Eliminar</button> 
+          </mat-menu> </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+

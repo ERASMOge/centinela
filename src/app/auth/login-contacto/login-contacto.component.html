@@ -1,0 +1,37 @@
+
+    <div class="container">
+        <div class="containerform">
+            <div class="containerfixed">
+            <div class="titulo">
+                <div class="col">
+                    <figure>
+                <img class="img-account-profile"  [src]="logo">
+              
+              </figure>
+              </div>
+                
+            </div>
+            <form [formGroup]="formSesion">
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Ingresa tu correo</mat-label>
+                        <input  matInput placeholder="email@example.com" class = "matInput"  id="matInput" formControlName="correo">
+                        <!--<mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                    </mat-form-field>
+                </div>
+                <div class="grupo2">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Ingresa tu contraseña</mat-label>
+                        <input matInput class = "matInput" formControlName="contrasena" [type]="hide ? 'password' : 'text'">
+                        <mat-icon  matSuffix (click)="hide = !hide">
+                        {{hide ? 'visibility' : 'visibility_off'}}
+                        </mat-icon>
+                    </mat-form-field>
+                </div>
+            <div class="form">
+                <button id="btn-iniciar" type="submit" mat-raised-button  (click)="form()">Iniciar sesion</button>
+            </div>    
+            </form>
+        </div>
+</div>
+</div>

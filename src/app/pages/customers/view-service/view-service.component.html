@@ -1,0 +1,157 @@
+<div class="containerP" fxLayout="row" fxLayoutAlign="center none" fxLayoutGap >
+    
+    <div fxFlex="100%" *ngIf="load">
+        <mat-card>
+            <div class="cabecera-link" >       
+                <div id="link"> 
+                <a [routerLink]="['./../../']" style="text-decoration: none;">Clientes > </a>
+                <a [routerLink]="['./../']" style="text-decoration: none;">Empresa > </a>
+                <a  style="text-decoration: none;">Servicios > </a>
+                </div>
+                
+            </div>
+        <div class="nivel1" > 
+            <mat-card class="mat-card2">
+                <mat-card-header class="mat-card-header2">
+                    <mat-card-title>
+                        Empresa
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="container row nivel1Containera">
+                        <div class="col Hcontainer">
+                            <div>
+                                <img src="https://png.pngtree.com/png-vector/20190704/ourlarge/pngtree-businessman-user-avatar-free-vector-png-image_1538405.jpg" class="imagen">
+                            </div>
+                            <div>
+                                Empresa:&nbsp;{{servicio[0].nombreCliente}}<br>
+                                Estatus:&nbsp;{{ metodo.estatus(servicio[0].estatusCliente)}}<br>
+                                Cliente:&nbsp;{{servicio[0].nombreCorto}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            Servicio:&nbsp;{{servicio[0].servicio}}<br>
+                            Razon social:&nbsp;{{servicio[0].razonSocial}}<br>
+                            Estatus:&nbsp;{{metodo.estatus(servicio[0].estatusRS)}}<br>
+                            Dominio:&nbsp;{{servicio[0].dominio}}
+                        </div >
+                        <div class="id col">
+                            ID:&nbsp;{{identificador}}
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+    <div class=" row">
+        <div class="col">
+            <mat-card class="servicio mat-card2">
+                <mat-card-header class="mat-card-header2">
+                    <mat-card-title>
+                        Servicio
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    Nombre:&nbsp;{{servicio[0].plan}}<br>
+                    Capacidad:&nbsp;{{servicio[0].descripcion}}
+                </mat-card-content>
+            </mat-card>
+            <mat-card class="equipo mat-card2" >
+                <mat-card-header class="mat-card-header2">
+                    <mat-card-title>
+                        Equipos
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content >
+                    <div>
+                        <button mat-raised-button color="primary" class="agregar" (click)="agregar('equipoAgregar')">Agregar</button>
+                    </div>
+ 
+                     <div class = "matTab" >
+                        <nav mat-tab-nav-bar >
+                            <a mat-tab-link *ngFor="let link of navLinks"
+                               (click)="activeLink = link.link"
+                               [routerLink]="link.link"
+                               [active]="activeLink === link.link"> {{link.label}} </a>
+                          </nav>
+                        <router-outlet></router-outlet>
+                    </div>
+                    
+                </mat-card-content>
+            </mat-card>
+            <mat-card class="ticket mat-card2">
+                <mat-card-header class="mat-card-header2">
+                    <mat-card-title>
+                        Tickets
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content >
+                    <!--<div>
+                        <button mat-raised-button color="primary" class="agregar" (click)="agregar('ticketAgregar')">Agregar</button>
+                    </div>-->
+                    <div class="component">
+                      <app-table-tickets [viewService] = true></app-table-tickets>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col">
+            <mat-card class="direccion mat-card2"> 
+                <mat-card-header class="mat-card-header2">
+                    <mat-card-title>
+                        Direccion
+                    </mat-card-title>
+                </mat-card-header>
+                
+                <mat-card-content class="contenidoDireccion">
+                    <div>
+                        <div class="direccionDetalle">
+                            Ciudad:&nbsp;{{ciudad?ciudad:servicio[0].ciudad}}<br>
+                            Coordenadas:&nbsp;
+                            {{coordenadas?coordenadas.split(",")[0].slice(0,10):servicio[0].coordenadas.split(",")[0].slice(0,10)}},
+                            {{coordenadas?coordenadas.split(",")[1].slice(1,10):servicio[0].coordenadas.split(",")[1].slice(1,10)}}<br>
+                            Direccion:&nbsp;Av. {{avenida?avenida:servicio[0].avenida}} 
+                            #{{numero?numero:servicio[0].numero}}, 
+                            {{colonia?colonia:servicio[0].colonia}}, 
+                            {{codigoPostal?codigoPostal:servicio[0].codigoPostal}} {{ciudad?ciudad:servicio[0].ciudad}},  
+                            {{estado?estado:servicio[0].estado}}
+                            <br>
+                            </div>
+                            <mat-tab-group (selectedTabChange)="cambiarMapa()">
+                                <mat-tab  label="Direccion"> 
+                                <div id="mapaDireccion">
+
+                                </div> </mat-tab>
+                                <mat-tab label="Coordenadas">
+                                    <div id="mapaCoordenadas">
+
+                                    </div> </mat-tab>
+                              </mat-tab-group>
+                        
+                        <button mat-raised-button color="primary" (click)="editarMapa(servicio[0].idServicio,cveCiudad?cveCiudad:servicio[0].cveCiudad,coordenadas?coordenadas:servicio[0].coordenadas,numero?numero:servicio[0].numero, 
+                        colonia?colonia:servicio[0].colonia, 
+                        codigoPostal?codigoPostal:servicio[0].codigoPostal,  
+                        estado?estado:servicio[0].estado,cveCiudad?cveCiudad:servicio[0].cveCiudad,avenida?avenida:servicio[0].avenida)">Editar</button>
+                   
+                    </div>  
+                </mat-card-content>
+            </mat-card>
+            <mat-card class="direccion mat-card2">
+                <mat-card-header class="mat-card-header2">
+                    <mat-card-title>
+                        Contactos
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content >
+                    <div>
+                        <button mat-raised-button color="primary" class="agregar" (click)="agregar('contactoAgregar')">Agregar</button>
+                    </div>
+                    <div class="component">
+                        <app-table-contact [idContacto]="true" [apMaterno]="true" [puesto]="true" [correo]="true" [idServicioDefault]="servicio[0].idServicio"> </app-table-contact>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+    </mat-card>
+</div>

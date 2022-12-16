@@ -1,0 +1,65 @@
+<h2 mat-dialog-title><ng-container *ngIf="this.data.opc == false; else elseTemplate">
+  Crear repetidor
+</ng-container>
+<ng-template #elseTemplate>
+  Actualizar repetidor
+</ng-template></h2>
+<form >
+<mat-dialog-content class="mat-typography">
+  <div>
+  <mat-form-field appearance="standard">
+    <mat-label>Nombre</mat-label>
+    <input [value]="data.nombre ? data.nombre : ''" matInput placeholder="Nombre del repetidor" #nombre >   
+    
+    <!--<mat-icon >title</mat-icon> -->  
+
+  </mat-form-field>
+
+  </div>
+  <div>
+      <mat-form-field appearance="standard">
+        <mat-label>Latitud</mat-label>
+        <input [value]="data.latitud ? data.latitud : ''"  matInput  placeholder="Ingrese la latitud" #latitud>   
+      </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="standard">
+      <mat-label>Longitud</mat-label>
+      <input matInput [value]="data.longitud ? data.longitud : '' " placeholder="Ingrese la longitud" #longitud>   
+    </mat-form-field>
+</div>
+<div>
+  <mat-form-field appearance="fill">
+    <mat-label>Estatus</mat-label>
+    <mat-select  matNativeControl [(value)]="data.estatus "required #selectEstatus>
+      <mat-option value="0" disabled>Seleccione un estatus</mat-option>
+      <mat-option value="1">activo</mat-option>
+      <mat-option value="2">inactivo</mat-option>
+    </mat-select>
+  </mat-form-field>  
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Ciudad</mat-label>
+      <mat-select [(value)]="data.ciudad " matNativeControl required #selectCiudad >
+        <mat-option value="0" disabled>Seleccione una ciudad</mat-option>
+        <mat-option *ngFor="let x of data.ciudades" [value]="x.idCiudad">{{x.nombre}}</mat-option>
+      </mat-select>
+      <!--<mat-icon>location_city</mat-icon> -->
+
+    </mat-form-field>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <button mat-button style="background-color:brown; color: white;" mat-dialog-close>Cancel</button>
+  <button mat-button style="background-color:#3f51b5; color: white;" (click)="crearCliente(nombre.value,latitud.value,longitud.value,selectEstatus.value,selectCiudad.value)" cdkFocusInitial>
+    <ng-container *ngIf="this.data.opc == false; else elseTemplate">
+      Crear
+    </ng-container>
+    <ng-template #elseTemplate>
+      Actualizar
+    </ng-template>
+    </button>
+</mat-dialog-actions>
+</form>

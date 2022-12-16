@@ -1,0 +1,20 @@
+<div><br></div>
+<div>
+    <button mat-raised-button (click)="notificacion()"> notificacion</button>
+    <div class="delete">
+      <button  mat-raised-button > <mat-icon >settings</mat-icon></button>
+   <button  mat-raised-button > <mat-icon >delete</mat-icon></button>
+   </div>
+</div>
+<div>
+    <mat-selection-list  #notif [(ngModel)]="selectedRowsChecked" >
+        <mat-list-option *ngFor="let notificaciones of notify">
+            {{notificaciones.asunto}}
+        </mat-list-option>
+      </mat-selection-list>
+      
+      <p>
+        Options selected: {{notif.selectedOptions.selected.length}}
+      </p>
+</div>
+<notifier-container></notifier-container>

@@ -1,0 +1,19 @@
+.container {
+    text-align: center;
+}
+mat-dialog-content{
+    text-align: center;
+}
+h2{
+    text-align: center;
+}
+
+#botones{
+    display:flex; 
+    justify-content: center;
+}
+
+#botones button{
+    margin-right: 5px;
+    margin-left: 5px;
+}

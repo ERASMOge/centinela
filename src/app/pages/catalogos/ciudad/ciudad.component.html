@@ -1,0 +1,68 @@
+<div class="matCardTop" fxLayout="row" fxLayoutAlign="center none">
+  <div fxFlex="95%">
+    <mat-card class="matGeneral">
+      <mat-card-content>
+        <div class="contenedorTablas row">
+          <div class="col-5">
+            <h2>Registrar ciudades</h2>
+            <form class="example-form">
+            
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input matInput placeholder="Ingrese el nombre completo" [formControl]="inputNombre" required maxlength="40">
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Nombre abreviado</mat-label>
+                <input matInput placeholder="Ingrese un nombre corto" [formControl]="inputAbreviado" required maxlength="35">
+              </mat-form-field>
+              <div class="botonNuevo">
+                <button mat-raised-button color="primary" (click)="guardarCiudad()" title="Agregar ciudad">Agregar</button>
+              </div>
+            </form>
+          </div>
+          <div class="col-7" style="overflow-x: auto;">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+              <!--- Note that these columns can be defined in any order.
+                    The actual rendered columns are set as a property on the row definition" -->
+            
+              <!-- Position Column -->
+              <ng-container matColumnDef="idCiudad">
+                <th mat-header-cell *matHeaderCellDef> Clave </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+              </ng-container>
+            
+              <!-- Name Column -->
+              <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+              </ng-container>
+            
+              <!-- Weight Column -->
+              <ng-container matColumnDef="abreviado">
+                <th mat-header-cell *matHeaderCellDef> Abreviado </th>
+                <td mat-cell *matCellDef="let element"> {{element.abreviado}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="eliminado" >
+                <th mat-header-cell *matHeaderCellDef >Eliminar</th>
+                <td mat-cell *matCellDef="let element" data-titulo="Eliminar">
+                  <button mat-button class="btn btn-outline-danger" (click)="eliminarCiudad(element.id,element.nombre)" title="Eliminar"><mat-icon>delete</mat-icon></button>
+                </td>
+              </ng-container>
+            
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <div class="preloader" style="position: relative; left:45%; margin-top:5%; margin-bottom: 5%;" [hidden]="cargando"></div>
+            <div class="existe" [hidden]="metodo.hayClientes(ELEMENT_DATA,cargando)">No se encontraron informaciones... </div>
+          </div>
+        </div>        
+        <mat-paginator  #paginator
+        [pageSize]="6"
+        [pageSizeOptions]="[6, 10, 15]"></mat-paginator>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

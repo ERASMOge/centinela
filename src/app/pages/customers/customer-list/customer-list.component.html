@@ -1,0 +1,82 @@
+
+<div  fxLayout="row" fxLayoutAlign="center none" class="principal">
+
+  <div fxFlex="95%">
+
+    <mat-card >
+      <div class="cabecera-link" >       
+        <div id="link"> 
+        <a  style="text-decoration: none;">Clientes > </a>
+        </div>
+    </div>
+      <mat-card-content>
+         <h2>Clientes</h2>
+        <div class="barriba">
+        <div id="nuevoc">
+        <button mat-raised-button color="primary" (click)="nuevoCliente()"><mat-icon>person</mat-icon> Nuevo cliente</button>
+        </div>
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Estatus</mat-label>
+            <mat-select matNativeControl (selectionChange)="verEstatus($event.value)" required>
+              <mat-option value="0" selected disabled>Seleccione un estatus</mat-option>
+              <mat-option value="1">Activo</mat-option>
+              <mat-option value="2">Inactivo</mat-option>
+            </mat-select>
+          </mat-form-field>
+          </div>
+        <div>
+          <mat-form-field appearance="standard">
+            <mat-label>Filtro</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Buscar coincidencia..." #input>   
+          </mat-form-field>
+          </div>
+      </div>
+      <div style="overflow-x: auto;">
+        <table mat-table [dataSource]="dataSource" >          
+          <ng-container matColumnDef="Empresa">
+            <th mat-header-cell *matHeaderCellDef > Empresa</th>
+            <td mat-cell *matCellDef="let element" [routerLink]="['/admin/client/',element.id]"> {{element.empresa}} </td>
+          </ng-container>
+          <ng-container matColumnDef="Nombre Corto">
+            <th mat-header-cell *matHeaderCellDef >Nombre corto</th>
+            <td mat-cell *matCellDef="let element" [routerLink]="['/admin/client/',element.id]">{{element.nombre}} </td>
+          </ng-container>
+          <ng-container matColumnDef="Estatus">
+            <th mat-header-cell *matHeaderCellDef >Estatus</th>
+            <td mat-cell *matCellDef="let element" [routerLink]="['/admin/client/',element.id]"> {{element.estatus}} </td>
+          </ng-container>
+          <ng-container matColumnDef="Opciones">
+            <th mat-header-cell *matHeaderCellDef >Opciones</th>
+          <td mat-cell *matCellDef="let element" > 
+              <button class="menu" mat-button [matMenuTriggerFor]="menu">...</button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="eliminar(element.id)"><mat-icon>delete</mat-icon>Eliminar</button> 
+                <button mat-menu-item (click)="editar(element.empresa,element.nombre,element.estatus,element.id)"><mat-icon>settings</mat-icon>Editar</button>  
+              </mat-menu> </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr [ngStyle]="{'display': hayClientes2()}" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <div class="preloader" style="position: relative; left:45%; margin-top:5%; margin-bottom: 5%;" [hidden]="cargando"></div>
+        <div class="existe" [hidden] = "hayClientes()">No se encontraron Clientes... </div>
+      
+        <mat-paginator  #paginator
+        [pageSize]="5"
+        [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+      </div>
+      <div class="babajo">
+        <div class="import">
+          <label class="boton" > Importar
+          <input (change)= "onFileChange($event)" style="display: none !important" type="file" multiple="false"/>
+          </label>
+          </div> 
+        <div>
+          <button mat-raised-button color="primary" [disabled] = "ELEMENT_DATA.length === 0" (click)="exportexcel()">Exportar</button>
+        </div>
+      </div>
+    
+    </mat-card-content>
+    </mat-card>
+</div>
+</div>

@@ -1,0 +1,59 @@
+<h2 mat-dialog-title><ng-container *ngIf="this.data.opc === false; else elseTemplate">
+  Crear contacto
+</ng-container>
+<ng-template #elseTemplate>
+  Actualizar contacto
+</ng-template></h2>
+<form>
+<mat-dialog-content class="mat-typography">
+        <div>
+        <mat-form-field appearance="standard">
+          <mat-label>Nombre</mat-label>
+          <input matInput  [value]="data.nombre? data.nombre: '' " placeholder="Ingrese el Nombre" #nombre >   
+        </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="standard">
+              <mat-label>Telefono</mat-label>
+              <input matInput type="number" [value]="data.telefono? data.telefono: '' " placeholder="Ingrese el Telefono" #telefono>
+              <mat-icon matSuffix>phone</mat-icon>
+            </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="standard">
+            <mat-label>Correo</mat-label>
+            <input matInput [value]="data.correo? data.correo: '' " placeholder="Ingrese el Correo" #correo>   
+            <mat-icon matSuffix>mail</mat-icon>
+          </mat-form-field>
+        </div>
+        <div style="display: none;">
+        <mat-form-field  appearance="fill">
+          <mat-label>repetear</mat-label>
+          <mat-select [(value)]="data.repetear"  #selectRep>
+            <mat-option [value]="+t.id" *ngFor="let t of data.repetears; let i=index">{{t.nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        </div>
+        <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Estatus</mat-label>
+          <mat-select  matNativeControl [(value)]="data.estatus "required #selectEstatus>
+            <mat-option value="0" disabled>Seleccione un estatus</mat-option>
+            <mat-option value="1">activo</mat-option>
+            <mat-option value="2">inactivo</mat-option>
+          </mat-select>
+        </mat-form-field>
+        </div>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-button style="background-color:brown; color: white;" mat-dialog-close>Cancel</button>
+  <button mat-button style="background-color:#3f51b5; color: white;" (click)="crearContacto(selectEstatus.value,nombre.value,telefono.value,correo.value,selectRep.value)" cdkFocusInitial>
+    <ng-container *ngIf="this.data.opc === false; else elseTemplate">
+      Crear
+    </ng-container>
+    <ng-template #elseTemplate>
+      Actualizar
+    </ng-template>
+  </button>
+</mat-dialog-actions>
+</form>

@@ -1,0 +1,2 @@
+<h2>Tickets <b> {{metodos.estadoEnLetraTicket(this.data.estatus)}} </b></h2>
+<app-table-tickets [selectedFake]="this.data.fecha1" [selectedFake2]="this.data.fecha2" [estatus]="this.data.estatus===undefined?0:this.data.estatus" [dialogRef]="dialogRef" ></app-table-tickets>

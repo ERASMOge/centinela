@@ -1,0 +1,146 @@
+<div fxLayout="row" style="margin: 1%;" fxLayoutAlign="center none">
+
+    <div fxFlex="100%">
+    <mat-card *ngIf="load">
+        <div class="cabecera-link" >       
+            <div id="link"> 
+            <a [routerLink]="['./../']" style="text-decoration: none;">Clientes > </a>
+            <a  style="text-decoration: none;">Empresa > </a>
+            </div>
+        </div>
+        <div class="col row " >
+            <div class="col-md-8 " >
+
+                <mat-card class="mat-card2">
+                        <mat-card-header class="mat-card-header2">                            
+                            <mat-card-title>Empresa</mat-card-title>
+                          </mat-card-header>
+                    <mat-card-content >
+                    
+                        <div class="container " style="display: flex;">
+                        <div >
+                            <img src="https://png.pngtree.com/png-vector/20190704/ourlarge/pngtree-businessman-user-avatar-free-vector-png-image_1538405.jpg" style="width: 90px;" >
+                        </div>
+                        <div style="align-self: flex-end; margin-left: 15px;" >
+                            <div class=""><b>Empresa:</b> {{datos.nombre }}  </div>
+                            <div class=""><b>Estatus:</b> {{metodo.estatus(datos.estatus)}}</div>
+                        </div>
+                           
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+                <mat-card >
+                    <mat-card-content>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md">Nombre corto: {{datos.nombreCorto}}</div>
+                                <div class="col-md">Telefono: ------ </div>
+                            </div>
+                        
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+           <mat-card class="mat-card2 col-md" >
+                        <mat-card-header class="mat-card-header2">
+                            <mat-card-title >Ultimos Tickets</mat-card-title>
+                          </mat-card-header>
+                <mat-card-content>
+                        <table mat-table class="mat-elevation-z8">
+                            <ng-container matColumnDef="id">
+                              <th mat-header-cell *matHeaderCellDef> id </th>
+                              <td mat-cell *matCellDef="let element"> {{element.id}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="nombre">
+                              <th mat-header-cell *matHeaderCellDef> servicio </th>
+                              <td mat-cell *matCellDef="let element">{{element.nombre}}</td>
+                            </ng-container>
+                          
+                         <tr mat-header-row *matHeaderRowDef="displayedColumnsTickets"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumnsTickets;"></tr>
+                          </table>
+                          <div class="preloader" hidden></div>
+                          <div class="existe" [hidden]="metodo.hayClientes(ELEMENT_DATA_TICKETS, cargando)">No se encontraron Tickets... </div>
+                          <mat-paginator  #paginator
+                          [pageSize]="10"
+                          [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col row">
+           <mat-card  class="tablaC col-md-8" >
+            <div >
+            <div>
+                <h1>Cliente</h1>
+            </div>
+          
+            <div >
+                <div class="cabecera" >
+                    <div class="botones">
+                        <button  mat-raised-button color="primary" [disabled]="buttonAgregar" (click)="agregar(true,datos.nombre)"><mat-icon>add</mat-icon>Agregar</button>
+                    </div>
+                    <div class="botones">
+                        <button mat-raised-button color="primary"  (click)="descargar(false,datos.nombre)"><mat-icon>download</mat-icon>Exportar</button>
+                    </div>
+                    <div>
+                        <mat-form-field style="width: auto;" appearance="standard">
+                        <mat-label>Buscar</mat-label>
+                        <input  [value]="correolink?correolink:''" matInput (keyup)="filtrarTabla($event)" placeholder="Buscar coincidencia..." #input>   
+
+                    <button id="boton" (click)="filtrarLink()" style="display: none;">BOTON</button>    
+
+                    </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+
+
+            <div class = "matTab" >
+                <nav mat-tab-nav-bar >
+                    <a mat-tab-link *ngFor="let link of navLinks"
+                       (click)="activeLink = link.link"
+                       (click)="desactivarBotones(link.index)"
+                       [routerLink]="link.link"
+                       [active]="activeLink === link.link"> {{link.label}} </a>
+                  </nav>
+                  <router-outlet ></router-outlet>
+            </div>
+
+            </mat-card>
+
+            <div class=" col-md">
+            <mat-card class="mat-card2" >
+                <mat-card-header class="mat-card-header2">
+                    <mat-card-title >Vendedores</mat-card-title>
+                  </mat-card-header>
+                    <mat-card-content >
+                        <div class="container">
+                            <div><b>Datos del vendedor</b></div>
+                            <br>
+                            <div>Nombre</div>
+                            <div>...</div>
+                        </div>
+                </mat-card-content>
+            </mat-card>
+            
+            <mat-card class="mat-card2">
+                <mat-card-header class="mat-card-header2">
+                    <mat-card-title >Vendedores</mat-card-title>
+                  </mat-card-header>
+                    <mat-card-content >
+                        <div class="container">
+                            <div><b>Datos del vendedor</b></div>
+                            <br>
+                            <div>Nombre</div>
+                            <div>...</div>
+                        </div>
+                </mat-card-content>
+            </mat-card>
+            </div>
+        </div>
+    </mat-card>
+    
+    </div>
+</div>

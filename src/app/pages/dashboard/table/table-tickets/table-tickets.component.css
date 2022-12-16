@@ -1,0 +1,19 @@
+table {
+    width: 100%;
+    box-shadow: none;
+}
+.tabla{
+    overflow-x:auto ;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+mat-card {
+    margin: 5px;
+
+}
+
+mat-card#listaTickets {
+    overflow-x: auto;
+    width: 100%;
+}

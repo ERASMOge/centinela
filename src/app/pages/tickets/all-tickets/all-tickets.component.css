@@ -1,0 +1,151 @@
+/*TABLA*/
+.tabla{
+    overflow-x:auto ;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+table{
+    width: 100%;
+}
+
+td.mat-cell.cdk-cell {
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: -webkit-center;
+}
+
+.letraFecha{
+    padding-left: 5px; 
+    padding-right: 5px;
+    text-align: -webkit-center;
+}
+.letraFecha2{
+    width: max-content !important;
+    text-align: center;
+
+}
+
+/** Sidenav*/
+.sidenav-child{
+    padding-left: 30px;  
+    padding-right: 10px; 
+    text-align: center;    
+}
+
+.buttonNuevoTicket {
+    text-align: right;
+} 
+
+.input{
+    font-size: small;
+}
+
+
+mat-drawer-container.mat-drawer-container.example-container.mat-drawer-transition {
+    height: 72vh ;
+    overflow-x: hidden;
+    
+}
+mat-drawer-container.mat-drawer-container.container-child {
+    background: #f3f3f3;
+    height: 72vh ;
+}
+
+
+/** childs del mat-autocomplete*/
+
+mat-chip{
+    font-size: 12px;
+}
+
+/**Titutlo de la pagina*/
+mat-card-header {
+    display: flex;
+}
+
+.title{
+    align-self: center;
+}
+
+
+/** botones del mat-paginator */
+
+mat-paginator {
+    width: 194px;
+}
+
+
+#container-paginator{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.bNuevo{
+    height: fit-content;
+}
+
+#paginator {
+    justify-content: right;
+}
+
+#main {
+    width: 100%;
+}
+
+#paginatorBTicket {
+    display: contents;
+}
+
+/** Boton para buscar por creacion*/
+
+#buscarCreacion {
+    line-height: normal;
+    font-size: small;
+}
+
+.tituloFecha{
+    font-size: 10px;
+}
+
+/*Eliminar y cerrar ticket*/
+.parBoton button{
+    margin-left:5px;
+}
+
+/*Grupo*/
+.matformfield {
+    width: 113px !important;
+}
+
+th.mat-header-cell{
+    text-align: center;
+}
+
+td.mat-cell{
+    font-size: small;
+}
+
+
+
+
+@media (max-width:700px) {
+    #container-paginator{
+        display: block;
+        text-align: center;
+    }
+    .buttonNuevoTicket button{
+        text-align: center;
+        width: 100%;
+    }
+    #main .ng-star-inserted {
+        width: 100%;
+    }
+
+    #paginatorBTicket{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

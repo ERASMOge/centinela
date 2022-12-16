@@ -1,0 +1,121 @@
+.col {
+    padding-right: 0;
+    width: 30vw;
+    background-color: white;
+  }
+
+.col figure img {
+    max-width: 100%;
+}
+
+body {
+    background-image: url("../../../assets/Mesa.jpg");
+    background-size: cover !important;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+.container {
+    background-size: cover !important;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    height: 100%;
+ margin-top: 0;
+    margin-right:0;
+    padding-right: 0;
+}
+
+.containerform  {
+    float: right;
+    height: 100%;
+    width: 45%;
+    background-color: white;
+    border-left: 30%;
+    display: flex;
+   align-items: center;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-infix {
+    width: auto ;
+}
+
+.containerfixed {
+    font-size: 1vw;
+    margin: auto;
+}
+
+form {
+    text-align: center;
+}
+
+.titulo h1 {
+    text-align: center; 
+    margin-bottom: 10%;
+    font-size: 3vw;
+}
+
+.grupo2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.login{
+    text-align: left;
+}
+
+
+.mat-form-field-ripple {
+    background-color: transparent !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+    color: white;
+}
+.mat-icon {
+    opacity: 0.5;
+
+}
+#btn-iniciar{
+    background-color: #3498db;
+    color: white;
+    width: 100%;
+    font-size: 1vw;
+}
+
+.mat-form-field-underline {
+    display: none;
+  }
+
+
+@media (max-width: 850px) {
+    .titulo h1 {
+        font-size: 1rem;
+    }
+
+    #btn-iniciar {
+        font-size: 10px;
+    }
+
+    .containerfixed {
+        font-size: 10px;
+    }
+}
+
+@media (max-height: 310px) {
+    .container{
+    min-height: 100%;
+    }
+}
+
+@media (max-height: 210px) {
+    .container{
+    height: auto;
+    min-height: 100%;
+    }
+}

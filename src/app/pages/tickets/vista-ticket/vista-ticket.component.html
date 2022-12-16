@@ -1,0 +1,332 @@
+<div  fxLayout="row" fxLayoutAlign="center none" class="matCardTop" [class.example-is-mobile]="mobileQuery.matches" >
+   
+  <div fxFlex="95%">
+      <mat-card >
+        <div class="cabecera-link" >       
+          <div id="link"> 
+          <a  (click)="regresar.back()" style="text-decoration: none; color: #0d6efd; cursor: pointer;" > < Volver </a>
+          </div>
+      </div>
+          <mat-card-content >
+            <div class="cabecera">
+              <div class="botonesPrincipales">
+                <a [href]="'/admin/tickets/edit-ticket/'+idTicket+'#Ancla'"><button mat-raised-button color="primary" (click)="comentarioPublico()">Responder<mat-icon>subdirectory_arrow_left</mat-icon></button></a>
+                <a [href]="'/admin/tickets/edit-ticket/'+idTicket+'#Ancla'"><button mat-raised-button color="primary" (click)="comentarioPrivado()">Añadir nota<mat-icon>note</mat-icon></button></a>
+                <button mat-raised-button color="primary" (click)="cerrarTicket()">Eliminar <mat-icon>delete</mat-icon></button>
+              </div>
+              <!--  <div class="menu">
+                <button mat-button [matMenuTriggerFor]="menu">...</button>
+                <mat-menu #menu="matMenu" mat-raised-button color="primary">
+                  <button mat-menu-item >...</button> 
+                </mat-menu>
+              </div>-->
+            </div>
+            <div class="sidenav-content" [hidden]="open > 1000">
+              <button type="button"  mat-button (click)="propiedades.toggle()" (click)="desplazarNavPropiedades()"><mat-icon>toc</mat-icon> </button>
+              <button  type="button" mat-button (click)="datosContacto.toggle()" (click)="desplazarNavDatosContacto()"><mat-icon>toc</mat-icon> </button>
+              </div>
+            <div class="bDato" [hidden]="open < 1000">
+              <button  type="button" mat-button (click)="propiedades.toggle()" (click)="desplazarNavPropiedades()"><mat-icon>toc</mat-icon> </button>
+              </div>
+              <mat-sidenav-container class="container-child" autosize>
+                  <mat-sidenav #datosContacto  [opened]="cambiarResponsive() >= 1000 " [mode]="mobileQuery.matches ? 'over' : 'side'"
+                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" id="sidenavContacto" style="background-color: #FFFFFF; padding-left: 16px; padding-right: 16px; overflow-y: auto;"  position="end">
+                  <!-- fixedTopGap=145-->
+                    <br>
+                        <h4>Datos de servicio </h4>
+                        <div id="datos">
+                            <div >
+                            <span ><b>Empresa: </b> <label style="text-transform:capitalize;">{{datosTicket?.cliente}}</label></span>
+                            </div>
+                            <div >
+                            <span ><b>Nombre del Servicio: </b> <label style="text-transform:capitalize;">{{datosTicket?.servicio}}</label></span>
+                            </div>
+                            <div >
+                            <span ><b>Plan: </b> <label style="text-transform:capitalize;">{{datosTicket?.plan}}</label></span>
+                            </div>
+  
+                            <div >
+                              <b>Ping radio:</b> <br/>
+                              <div *ngFor="let i of pingRadio; let o =index" class="device">
+                                  {{i.ping}} ({{i.ip}})<div><div [style.background]="i.color" class="circulo"></div></div>
+                              </div>
+                            </div>
+                            <br/>   
+                            <div >
+                              <b>Ping router:</b> <br/>
+                              <div *ngFor="let i of pingRouter; let o =index" class="device">
+                                  {{i.ping}} ({{i.ip}})<div><div [style.background]="i.color" class="circulo"></div></div>
+                              </div>
+                            </div>
+                            <br/>
+                            <div >
+                            <b>Ping otro:</b> <br/>
+                            <div *ngFor="let i of pingOtro; let o =index" class="device">
+                                {{i.ping}} ({{i.ip}})<div><div [style.background]="i.color" class="circulo"></div></div>
+                            </div>
+                          </div>
+                          <div > <br>
+                            <b>Repetidoras: </b> <br/>
+                            <div *ngFor="let i of repetidoras; let o =index" class="device">
+                              <label style="text-transform:capitalize;">{{i}}</label>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                        <mat-divider></mat-divider>
+                        <br>
+                        <div class="datos-extras">
+                          <h4>Datos de contacto</h4>
+                          <div >
+                            <div class="datosPerfil">
+                              <div><img src="../../../../assets/149071.png" width="50px" height="50px"></div>
+                              <div>
+                                <label style="text-transform:capitalize;">{{datosTicket?.contacto}}</label><br>
+                                <label style="text-transform:capitalize;">{{datosTicket?.cliente}}</label>
+                              </div>
+                            </div>
+                            <br>
+                            <div>
+                              <ng-container *ngIf="datosTicket?.correo.length > 27; else elseTemplate">
+                                <span [title]="datosTicket?.correo"><b>Correo: </b>{{datosTicket?.correo.substring(0,22)+"..."}}</span>
+                              </ng-container>
+                              <ng-template #elseTemplate>
+                                <span ><b>Correo: </b>{{datosTicket?.correo}}</span>
+                              </ng-template>
+                            </div>
+                            <div>
+                              <b>Numero: </b><span>{{datosTicket?.celular}}</span>
+                            </div>
+                            <div>
+                              <b>Puesto: </b><span style="text-transform:capitalize;">{{datosTicket?.puesto}}</span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                  </mat-sidenav>
+                    <mat-sidenav #propiedades  [opened]="open >= 1000" [mode]="mobileQuery.matches ? 'over' :'side'"
+                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" [style.z-index]=" open >1000?1:3"
+                  [style.margin-left]="open < 1000? '-52px':''"
+                  id="sidenavProp"  style="background-color: #FFFFFF; padding-left:40px; padding-right:40px; " [position]="position ===false ? 'end':'start'"  [style.margin-right]="moveProp ===false && moveDatos === false?'210px': '0px' "> 
+                    <br>
+                    <form [formGroup]="form">
+                            <h3>Actualizar Ticket</h3>
+                            <div>
+                              <b>Numero de ticket: {{idTicket}}</b>
+                            </div>
+                            <br/>
+                            <div class="input" >
+                              <mat-form-field appearance="fill">
+                                <mat-label>Grupo</mat-label>
+                                <mat-select  formControlName="cveGrupo" (selectionChange)="buscarUsuarios($event.value,false)" #grupoNav>
+                                  <mat-option [value]="option.value" *ngFor="let option of Grupos" >{{ option.viewValue }} </mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                            </div>
+                            <div class="input">
+                              <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>Agente</mat-label>
+                                <input type="mensaje"
+                                      placeholder="Pick one"
+                                      aria-label="Creado"
+                                      matInput
+                                      [formControl]="myControl"
+                                      [matAutocomplete]="auto4">
+                                <mat-autocomplete autoActiveFirstOption (optionSelected)="autoCompleteAgente($event.option.value)" #auto4="matAutocomplete">   
+                                  <mat-option id="0" value="Sin asignar">
+                                    Sin asignar
+                                  </mat-option>
+                                  <mat-option  *ngFor="let option of filteredOptions | async ; let i = index"  [value]="option" [id]="i.toString()">
+                                    {{option.usuario}}
+                                  </mat-option>
+                                </mat-autocomplete>
+                              </mat-form-field>
+                            </div>
+                            <div class="input" >
+                              <mat-form-field appearance="fill">
+                                  <mat-label>Tipo</mat-label>
+                                  <mat-select formControlName="tipo">
+                                      <mat-option value=1>Soporte</mat-option>
+                                      <mat-option value=2>Atencion</mat-option>
+                                      <mat-option value=3>Solicitud</mat-option>
+                                  </mat-select>
+                              </mat-form-field>
+                            </div>
+                            <div class="input">
+                                  <mat-form-field appearance="fill" >
+                                    <mat-label>Estado</mat-label>
+                                    <mat-select  formControlName="estado" #estadoTable>
+                                        <mat-option value="1">Abierto</mat-option>
+                                        <mat-option value="2">En progreso</mat-option>
+                                        <mat-option value="3">Pausado</mat-option>
+                                        <mat-option value="4">Cerrado</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="input">
+                              <mat-form-field appearance="fill">
+                                <mat-label>Prioridad</mat-label>
+                                <mat-select formControlName="prioridad">
+                                  <mat-option value="1">Baja</mat-option>
+                                  <mat-option value="2">Media</mat-option>
+                                  <mat-option value="3">Alta</mat-option>
+                                  <mat-option value="4">Urgente</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                            </div>
+                            <div style="text-align: center;">
+                              <button  mat-raised-button color="primary"  id="buttonload"></button>
+                            </div>
+<!--                            <button mat-raised-button color="primary" (click)="actualizar4params()" aria-busy="false">Actualizar <mat-icon>update</mat-icon></button>-->
+                            <div class="boton"   >
+                              <button type="button" [hidden]="open < 1000" style="margin-top: 90px;" mat-button (click)="datosContacto.toggle()" (click)="desplazarNavDatosContacto()">
+                                <mat-icon>keyboard_tab</mat-icon>          
+                              </button>
+                            </div>
+                          </form>
+                        
+                    </mat-sidenav>
+                    <!--Se maneja la logica de los dos sidevar, la primera parte es cuando se trata de 
+                    dispositivos mas pequeños y si no es asi, entonces se va a la segunda parte-->
+                    <div id="box-c"  [style.background] = "'#FFFFFF'"
+                    [style.margin-right]=" (open <1000?'auto' :(moveProp === true && moveDatos === true ?
+                    '0px':(moveDatos ===true && moveProp === false? '0px': '210px')))" (scroll)="scrollComentarios($event)">
+                        <mat-grid-list>
+                          <mat-divider></mat-divider>
+                            <div class="comentario">
+                            <div class="img">
+                              <div *ngIf="datosTicket?.origen === 'llamada directa'">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+                                  <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                                </svg>
+                              </div>
+                              <div *ngIf="datosTicket?.origen === 'correo'">
+                                <img src="../../../../assets/icon/email.svg" width="65" height="65">
+                              </div>
+                              <div *ngIf="datosTicket?.origen === 'whatsApp'">
+                                <img src="../../../../assets/icon/whatsapp.svg" width="42" height="42">
+                              </div>
+                              <div *ngIf="datosTicket?.origen === 'facebook'">
+                                <img src="../../../../assets/icon/facebook.svg" width="46" height="46">
+                              </div>
+                              <div *ngIf="datosTicket?.origen === 'pagina web'">
+                                <img src="../../../../assets/icon/web_site.svg" width="47" height="47">
+                              </div>
+                              <div *ngIf="datosTicket?.origen === 'asesor'">
+                                <img src="../../../../assets/icon/asesor.png" width="47" height="47">
+                              </div>
+                            </div>
+                            <div class="cuerpo">
+                              <div> Asunto: <b style="text-transform:uppercase;">{{datosTicket?.asunto}}</b></div><br>
+                                Creado por <b style="text-transform:capitalize;">{{datosTicket?.creador}}</b>
+                              <div>
+                              <span><b style="text-transform:capitalize;">{{datosTicket?.contacto}}</b> informado por <b>{{datosTicket?.origen}}</b></span><br>
+                              <span class="date">{{date.toLocaleDateString("es-ES",optionsDate)}}</span>
+                              </div>
+                              <br>
+                              <div>
+                                {{datosTicket?.descripcion}}
+                              </div>
+                              <br>
+                            </div>
+                            </div>
+                        </mat-grid-list>
+                        <mat-grid-list *ngFor="let com of comment" cols="4" [style.background] = "com.color"
+                        >
+                            <mat-divider></mat-divider>
+                          <div class="comentario">
+                            <div class="img">
+                              <!--Cerrar ticket-->
+                              <div [hidden]="com.cerrar === undefined  || com.actualizar !==undefined" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-ticket" viewBox="0 0 16 16">
+                                <path d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6V4.5ZM1.5 4a.5.5 0 0 0-.5.5v1.05a2.5 2.5 0 0 1 0 4.9v1.05a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-1.05a2.5 2.5 0 0 1 0-4.9V4.5a.5.5 0 0 0-.5-.5h-13Z"/>
+                              </svg></div>
+                              <!--Privado-->
+                              <div [hidden]="com.normal === undefined" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-x-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6.146-2.854a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
+                              </svg></div>
+                              <!--Escalado-->
+                              <div [hidden]="com.grupo===undefined && com.agente===undefined"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrows-move" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10zM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8z"/>
+                              </svg></div>
+                              <!--Publico-->
+                              <div [hidden]="com.usuarioRespondido===undefined || com.grupo !== undefined || com.cerrar !== undefined || com.actualizar !== undefined  || com.normal !== undefined"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                                <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+                                <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                              </svg></div>
+                              <!--Actualizado-->
+                              <div [hidden]="com.cerrar !== undefined  || com.actualizar ===undefined"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                              </svg></div>
+                            </div>
+                            <div class="cuerpo">
+                              <p [hidden]="com.informado===undefined "><b style="text-transform:capitalize;">{{com.informado}}</b> Informado por <label style="margin-left: 5px; margin-right: 5px; text-transform:capitalize;">{{com.dispositivo}}</label></p>
+                              <div [hidden]="com.usuarioRespondido===undefined || com.grupo !== undefined || com.cerrar !== undefined || com.actualizar !== undefined "><b style="text-transform:capitalize;">{{com.usuarioRespondido}}</b> Respondió</div>
+                              <div [hidden]="com.cerrar === undefined  || com.actualizar !==undefined" ><b style="text-transform:capitalize;">{{com.usuarioRespondido}}</b> cerró ticket</div>
+                              <div [hidden]="com.cerrar !== undefined  || com.actualizar ===undefined" ><b style="text-transform:capitalize;">{{com.usuarioRespondido}}</b> actualizó ticket</div>
+                              <div [hidden]="com.grupo===undefined && com.agente===undefined"><b>{{com.usuarioRespondido}}</b> escaló el ticket a <b>Grupo:</b> <label style="margin-left: 5px; margin-right: 5px; text-transform:capitalize;">{{com.grupo}}</label> <b>Agente:</b> <label style="margin-left: 5px; margin-right: 5px; text-transform:capitalize;">{{com.agente}}</label></div>                                
+                              <div class="date">{{com.fecha}} 
+                              <div [hidden]="com.normal === undefined" class="privadoMsj"> Privado</div>
+                              </div> 
+                              <div [hidden]="com.mensaje===undefined"><br ></div>
+                              
+                              <blockquote >
+                                <p [hidden]="com.mensaje===undefined">{{com.mensaje}}</p>
+                              </blockquote>
+                              <mat-list *ngIf="com.nombreArchivo">
+                                <mat-list-item [hidden]="com.nombreArchivo===undefined">
+                                  <ng-container *ngIf="com.nombreArchivo">
+                                    <button type="button" mat-raised-button><mat-icon>perm_media</mat-icon> {{com.nombreArchivo}}</button></ng-container>
+                                  <ng-container *ngIf="com.nombreArchivo">
+                                    <a  [download]= com.nombreArchivo [href]="descargar(com.ruta)"><mat-icon>cloud_download</mat-icon></a>
+                                  </ng-container>
+                                </mat-list-item>
+                              </mat-list>
+                            </div>
+                          </div>
+                          </mat-grid-list>
+                          <div> 
+                        </div>
+                      </div>
+                    <div [style.width]="open<1000?'100%':
+                    (moveProp === false && moveDatos === false ?'calc(100% - 210px)':
+                    (moveDatos === false && moveProp === true? 'calc(100% - 212px)':'100%'))"
+                    >
+                      <div class="botonesComentarios" id="Ancla">
+                        <button mat-stroked-button color="primary" (click)="comentarioPublico()">Responder<mat-icon>subdirectory_arrow_left</mat-icon></button>
+                        <button mat-stroked-button color="primary" (click)="comentarioPrivado()">Añadir nota<mat-icon>note</mat-icon></button>
+                      </div>
+                      <textarea placeholder="Escribe un comentario..." [formControl]="textArea" id="res" 
+                        rows="10" required="true"></textarea>
+                      <div class="botonRes">
+                        <div [hidden]="tipoComentario" id="icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-x-fill" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6.146-2.854a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                        </div>                        
+                        <div  class="import" style="padding-right:10px;">
+                          <label class="cargar" for="file1" title="Subir archivo">
+                            <mat-icon style="transform: rotate(35deg); color : rgb(255, 255, 255)">attach_file</mat-icon>
+                            <input class="file" id="file1" style="color: rgb(68, 177, 214);" name="file1" (change)= "input($event)" type="file"/>
+                          </label>
+                        </div>
+                        <div>
+                          <button mat-raised-button color="primary" (click)="enviarMensaje()">Responder <mat-icon>send</mat-icon></button>
+                        </div>
+                      </div><div>
+                        <mat-list>
+                            <p mat-subheader>Archivo solo se guarda el último en seleccionar</p>
+                            <mat-list-item *ngFor="let file of files">
+                                <mat-icon  mat-list-icon>folder</mat-icon>
+                                <h4 mat-line>{{file.name}}</h4>
+                                <button mat-raised-button color="warn" (click)="deleteFile(file)">Quitar</button>
+                                <mat-divider></mat-divider>
+                            </mat-list-item>
+                        </mat-list>
+                    </div>
+                    </div>                  
+                  </mat-sidenav-container>
+          </mat-card-content>  
+      </mat-card>
+  </div>
+  </div>

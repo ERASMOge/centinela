@@ -1,0 +1,103 @@
+
+
+.table-container {
+  background-color: black;
+  width: 100%;
+  border-radius: 5px;
+}
+
+tr{
+  background-color: white;
+}
+
+.spacer{
+  width: 70px;
+}
+
+h3{
+  font-size: 10px;
+}
+.dash{
+  width: 100%;
+  height: 100%;
+}
+.container{
+font-family: Roboto,helvetica neue,Arial,sans-serif;
+}
+.assigment{
+  color: rgb(16, 210, 210);
+}
+.titulodash{
+font-size: 9px;
+width: 200%;
+}
+
+.equalizer{
+  color: rgb(26, 97, 220);
+}
+.multiline_chart{
+color: rgb(41, 210, 8);
+}
+.pending_actions{
+color: rgb(228, 40, 206);
+}
+
+#clientesnuevos{
+  
+}
+
+.user {
+  display: inline-block;
+  width: 30%;
+  height: 225%;
+  border-radius: 50%;
+background-color: gray;
+  object-fit: cover;
+}
+h2{
+  margin-bottom: 0;
+}
+#arribanew {
+ height: 7vw;
+ width: 160%;
+}
+#abajonew{
+ width: 160%;
+  height: 6vw;
+}
+.time{
+ font-size: 50% ;
+}
+.name{
+  font-size: 50%; height: 15%;
+}
+#newc{
+width: 50%;
+}
+#between{
+  margin-right: 0;
+}
+.ServiceRepeater{
+  height: 100%;
+}
+#chart {
+  width: 120%;
+  margin: 35px auto;
+  padding: 0;
+}
+.serviciostotales{
+ 
+  height: 100%; 
+  text-align: center;
+}
+
+.avatartopclientes{
+  height: 1.5vw;
+  width: 1.5vw;
+}
+.empresanombre{
+  
+}
+.serviciocantidad{
+float: right;
+}

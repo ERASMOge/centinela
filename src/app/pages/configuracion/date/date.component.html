@@ -1,0 +1,38 @@
+<div class="container" *ngIf="llamarDatos |async as dato">
+<div class="card-header">Configuracion de Hora y Fecha</div>
+<div>
+    <br>
+</div>
+<div class="calendario" >
+<mat-form-field appearance="fill">
+    <mat-label>Elige la fecha</mat-label>
+    <input [value]="fecha" matInput [matDatepicker]="picker" #fecha2>
+    <mat-hint>Mes/Dia/Año</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</div>  
+<div class="time">
+    <br>
+    <mat-form-field  appearance="fill">
+        <input [value]="hora" type="time" matInput name="week" min="09:00" max="18:00" #hora2>
+        <mat-hint>Hora/Minutos/Segundos</mat-hint>
+     </mat-form-field>
+</div>
+<div class="timezone">
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Zona Horaria</mat-label>
+      <mat-select matNativeControl [value]="dato.container[0].zona_horaria" required name="Zona Horaria" #zona_horaria2>
+        <mat-option *ngFor="let Zone of Zones"  [value]="Zone.value">
+        {{Zone.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+
+  
+  </div>
+  <button (click)="editarDate(hora2.value,fecha2.value,zona_horaria2.value)"  mat-raised-button> Guardar cambios</button>
+    
+</div>

@@ -1,0 +1,15 @@
+<h2 mat-dialog-title> Actualizar</h2>
+
+
+<div>
+    <mat-form-field appearance="standard">
+      <mat-label>Nombre</mat-label>
+      <input matInput [value]="data.nombre? data.nombre : '' " placeholder="Nombre del repetidor" #nombre >     
+    </mat-form-field>
+    <mat-icon>title</mat-icon>  
+    </div>
+
+<mat-dialog-actions align="center">
+  <button mat-button mat-dialog-close style="background-color:rgb(165, 42, 42); color: white;">Cancelar</button>
+  <button mat-button  cdkFocusInitial style="background-color:#3f51b5; color: white;" (click)="confirmar(nombre.value)">Guardar</button>
+</mat-dialog-actions>

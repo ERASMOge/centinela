@@ -1,0 +1,60 @@
+<div class="tabla">
+    <mat-card-content>
+        <table mat-table [dataSource]="dataSource" style="width:100%;">
+            <ng-container matColumnDef="IdDevice">
+            <th mat-header-cell *matHeaderCellDef> Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.idDevice }}</td>
+            </ng-container>
+            <ng-container matColumnDef="Nombre">
+            <th mat-header-cell *matHeaderCellDef> Nombre</th>
+            <td mat-cell *matCellDef="let element">{{element.device}}</td>
+            </ng-container>
+            <!--
+            <ng-container matColumnDef="Tipo">
+            <th mat-header-cell *matHeaderCellDef> Tipo </th>
+            <td mat-cell *matCellDef="let element"> {{element.tipo}} </td>
+            </ng-container> -->
+            <ng-container matColumnDef="Modelo">
+            <th mat-header-cell *matHeaderCellDef> Modelo </th>
+            <td mat-cell *matCellDef="let element"> {{element.modelo.substring(0,18)+"..."}}  </td>
+            </ng-container>
+            <ng-container matColumnDef="Ip">
+            <th mat-header-cell *matHeaderCellDef> Ip </th>
+            <td mat-cell  *matCellDef="let element"  > 
+            <div class="select" >
+                <mat-form-field appearance="standard" class="matformfield">
+                <mat-label>Ip's asignadas</mat-label>
+                    <select  matNativeControl [id]='element.idDevice' (click)="abrirIps(element.idDevice)" (opened)="abrirIps(element.idDevice)">
+                        <option value="" selected disabled></option>
+                        <option *ngFor="let i of IpSeleccionadas[this.guardandoPrimerIndice.indexOf(element.idDevice)]"  > {{i.ip}}
+                    </option >
+                </select>
+                </mat-form-field>
+            </div>
+            </td>
+            </ng-container>
+            <ng-container matColumnDef="Estatus">
+                <th mat-header-cell *matHeaderCellDef> Estatus </th>
+                <td mat-cell *matCellDef="let element"> {{element.estatus}} </td>
+                </ng-container>
+            <ng-container matColumnDef="opciones">
+                <th mat-header-cell *matHeaderCellDef> Opciones </th>
+                <td mat-cell *matCellDef="let element">
+                    <button class="menu" mat-button [matMenuTriggerFor]="menu">...</button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="eliminar(element.idDevice)"><mat-icon>delete</mat-icon>Eliminar</button> 
+                        <button mat-menu-item (click)="editar(element)"><mat-icon>settings</mat-icon>Editar</button>  
+                    </mat-menu>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <div class="preloader" style="position: relative; left:45%; margin-top:5%; margin-bottom: 5%;" [hidden] = cargando></div>
+        <div class="existe" [hidden]="metodo.hayClientes(ELEMENT_DATA,cargando)">No se encontraron otros equipos... </div>
+        </mat-card-content>
+     </div>   
+        <mat-paginator  #paginator
+        [pageSize]="tamanoTabla"
+        [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+    

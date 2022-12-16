@@ -1,0 +1,318 @@
+/*SUBIR IMAGEN*/
+.file{
+    display: none;
+}
+
+.cargar{
+    display: block;
+    padding: 3px 10px;
+    border: 1px solid rgb(68, 177, 214);
+    border-radius: 6px;
+    background-color: rgb(68, 177, 214);
+    cursor: pointer;
+    box-shadow: 0px 1px rgba(47, 47, 47, 0.5);
+    overflow: hidden;
+    box-shadow: 0px 0px 5px rgb(70, 70, 71);
+}
+/*TABLA*/
+
+/*.cargarArchivo {
+    margin-right: 10px;
+    background-color: rgb(68, 177, 214);
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 200;
+    box-shadow:1px 1px 4px #b6b6b6;
+    cursor: pointer;
+}
+.import {
+    margin-block: auto;
+}*/
+  
+  #buttonload {
+    border-radius: 10px;
+    outline: none;
+    height: 40px;
+    text-align: center;
+    letter-spacing: 1px;
+    text-shadow: 0;
+    font-size: 12px;
+    font-weight: bold;
+    transition: all 0.25s ease;
+    width: 100%;
+
+}
+  
+  #buttonload:after {
+    content: "Actualizar";
+  }
+  
+  .onclic {
+    margin: -30px;
+    transform: scale(0.4);
+    width:40px !important;
+    padding:40px !important;
+    border-radius: 50px !important;
+    background: #fff;   
+    box-shadow: none !important; 
+    cursor: auto !important;
+    border:8px solid #bbbbbb;
+    border-left-color: rgb(61, 148, 235);
+  -webkit-animation: rotating 2s 0.25s linear infinite !important;
+          animation: rotating 2s 0.25s linear infinite !important;
+         
+  }
+
+    .onclic:after {
+        content: "" !important;
+    }  
+
+  .validate {
+    font-size: 13px;
+    background-color: green;
+    transition: 1s ;
+  }
+
+  .validate:after {
+    content: "✓" !important;  
+    }
+  
+  @keyframes rotating {
+    from {
+      transform: scale(0.4) rotate(0deg);
+    }
+    to {
+      transform: scale(0.4) rotate(360deg);
+    }
+  }
+.tabla{
+    overflow-x:auto ;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+table{
+    width: 100%;
+}
+
+td.mat-cell.cdk-cell {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Sidenav*/
+.sidenav-child{
+    padding:10px;
+    background-color: #f3f3f3;    
+}
+
+.sidenav-content {
+    display: flex;
+    justify-content: space-between;
+} 
+
+.sidenav-child mat-card {
+    height: 100%;
+    overflow: auto;
+}
+
+.sidenav-child mat-card mat-divider {
+    width: 80%;
+    margin-left: 10%;
+}
+
+.datoC {
+    margin-top: 20px;
+}
+
+.input{
+    font-size: 12px;
+}
+
+/*Datos de imagen*/
+.datosPerfil {
+    display: flex;
+}
+
+.datosPerfil img {
+    margin-right: 10px;
+}
+
+/** container child */
+
+mat-drawer-container {
+    background: #f3f3f3;
+    height: 72vh ;
+}
+
+/**Dentro del mat-drawer-container */
+
+
+#navNoDesplagable {
+    background: white;
+    overflow-y: auto;
+    height: 100%;
+    padding:20px;
+    text-align: center;
+    /*box-shadow: 62px 28px 74px 32px;*/
+
+}
+
+mat-form-field {
+    width: 145px !important;
+}
+
+#box-c {
+    overflow-y: auto;
+    height: 72vh;
+}
+
+
+/*Comentarios*/
+
+.comentario {
+    display: flex;
+}
+
+mat-grid-list{
+    border-radius: 15px;
+    margin-bottom: 3px;
+}
+
+.cuerpo {
+    margin: 20px;
+    width: 100%;
+    margin-bottom: auto;
+}
+.img {
+    margin: 20px;
+}
+
+mat-card {
+    height: 100%;
+}
+
+button {
+    margin-right: 5px;
+}
+
+.boton {
+    width: 100%;
+    text-align: end;
+}
+
+.botonesComentarios {
+    margin: 3px; 
+    background-color: white;
+}
+
+#res {
+    outline: none;
+    border: 2px solid rgb(188, 188, 188);
+    background-color: transparent;
+    resize: none;
+}
+
+.botonRes{
+    float: right;
+    display: flex;
+}
+
+.botonRes #icon{
+    margin-right: 5px;
+}
+
+.sidenav-dc {
+    text-align: center;
+}
+
+textarea {
+    width: 100%;
+}
+
+
+.date {
+    font-size: x-small;
+    display: flex;
+    justify-content: space-between;
+}
+
+.privadoMsj{
+    border: 1px solid black;
+    border-radius: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+/* buton para abrir contactos*/
+.bDato{
+    display: flex;
+    justify-content: end;
+}
+
+/*blockquote*/
+blockquote {
+    margin: 0px 1rem 1rem;
+}
+
+.cabecera {
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu {
+    display: inline-block;
+}
+
+
+/*mat-sidenav*/
+
+#sidenavContacto{
+    width: 210px;
+}
+
+/** PING */
+.circulo{
+    border: 1px solid black;
+    border-radius: 30px;
+    margin-left: 5px;
+}
+
+.device{
+    display: flex;
+    align-items: center;
+}
+
+.circulo {
+    border: 1px solid black;
+    background: grey;
+    width: max-content;
+    border-radius: 50px;
+    padding: 5px;
+}
+
+.botonesPrincipales a {
+    outline: none;
+    text-decoration: none;
+    color: white;
+    width: 100%;
+}
+@media (max-width:542px) {
+    .botonesPrincipales{
+        display: grid;
+    }
+
+    .botonesPrincipales button{
+        margin-top: 5px;
+        width: 100%;
+    }
+
+    .cabecera {
+        display: block;
+    }
+    .menu{
+        text-align: end;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+}

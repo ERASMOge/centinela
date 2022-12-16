@@ -1,0 +1,92 @@
+
+    <!-- Account page navigation-->
+    
+        <div class="col-xl-8">
+            <!-- Account details card-->
+            <div class="card mb-4">
+                <div class="card-header">Configuracion Smtp</div>
+                <div class="card-body">
+                    <form>
+                        <!-- Form Group (username)-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputCorreo">Correro</label>
+                            <input class="form-control" id="inputCorreo" type="text" placeholder="Ingresa correo" [value]="username" #username2 >
+                        </div>
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                           
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputPassword">Password</label>
+                                <input class="form-control" id="inputPassword" type="password" placeholder="Ingresa password"  [value]="password" #password2 >
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputPort">Puerto</label>
+                                <input class="form-control" id="inputPort" type="text" placeholder="Ingresa puerto" [value]="port" #port2>
+                            </div>
+                        </div>
+                        <!-- Form Row        -->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (organization name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputHost">Host</label>
+                                <input class="form-control" id="inputHost" type="text" placeholder="Ingresa host" [value]="host" #host2>
+                            </div>
+                            <!-- Form Group (location)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputSecure">Seguridad</label>
+                                <mat-select class="form-control" #smtp_secure2 [value]="smtp_secure">
+                                  
+                                  <mat-option [value]="option.value" *ngFor="let option of secures">{{ option.viewValue }}</mat-option>
+                                </mat-select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputSecure">Autentificacion</label>
+                                <mat-select [(value)]="selectedAuth" class="form-control">
+                                  
+                                  <mat-option [value]="option.value" *ngFor="let option of auths">{{ option.viewValue }}</mat-option>
+                                </mat-select>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputLimE">Limite de envio</label>
+                                <mat-select  class="form-control" #lim_env2 [value]="lim_env">
+                                  
+                                  <mat-option [value]="option.value" *ngFor="let option of selectlim_envio">{{ option.viewValue }}</mat-option>
+                                </mat-select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputLimCorr">Limite de correos</label>
+                                <input class="form-control" id="inputLimCorr" type="text" placeholder="Ingresa tipo de seguridad" #lim_corr2 [value]="lim_corr">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputSecure">Tipo de autentificacion</label>
+                                <mat-select class="form-control"#auth2 [value]="auth">
+                                  
+                                  <mat-option [value]="option.value" *ngFor="let option of kinds">{{ option.viewValue }}</mat-option>
+                                </mat-select>
+                            </div>
+                            
+                        </div>
+
+                        <div>
+                            <button mat-raised-button (click)="smtpMail()" >  <mat-icon>mail</mat-icon> </button>
+                       
+                        <!-- Save changes button-->
+                        <button mat-raised-button class="guardar"	(click)="notify()" (click)="editarSmtp(lim_env2.value,lim_corr2.value,host2.value,auth2.value,username2.value,password2.value,smtp_secure2.value,port2.value)" >Guardar cambios</button>
+                    </div>
+                        <notifier-container></notifier-container>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+   
+
+
+
+
+

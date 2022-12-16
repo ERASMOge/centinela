@@ -1,0 +1,19 @@
+<div class="wrapper">
+    <h3>Imagen de perfil</h3>
+  
+    <form [formGroup]="uploadForm" (ngSubmit)="submit()">
+      <!-- Select File -->
+      <input type="file" accept="image/*" (change)="showPreview($event)" />
+  
+      <!-- Image Preview -->
+      <div class="imagePreview" *ngIf="imageURL && imageURL !== ''">
+        <img [src]="imageURL" [alt]="uploadForm.value.name">
+      </div>
+  
+
+ 
+    </form>
+    <br>
+    <button mat-button type="submit">Guardar cambios</button>
+  
+

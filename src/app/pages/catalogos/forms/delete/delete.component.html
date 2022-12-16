@@ -1,0 +1,13 @@
+  <div>
+    <mat-dialog-actions align="center">
+      <mat-icon id="presentacion" class="parpadea">warning</mat-icon>
+    </mat-dialog-actions>
+    <br>
+    <h2 mat-dialog-title style="text-align: center;">{{mensaje}}</h2>
+    <br>
+    <mat-dialog-actions align="center">
+      <button mat-button mat-dialog-close type="button" class="btn btn-outline-primary" style="margin-right: 30px;"><mat-icon id="icono">close</mat-icon>Cancelar</button>
+      <button mat-button  cdkFocusInitial type="button" class="btn btn-outline-danger" (click)="confirmar()"><mat-icon id="icono">delete</mat-icon>Eliminar</button>
+    </mat-dialog-actions>
+    <br>
+  </div>
